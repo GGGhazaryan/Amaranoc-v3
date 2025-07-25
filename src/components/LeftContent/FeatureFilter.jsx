@@ -1,6 +1,25 @@
-import { features } from '../../data/DataBase';
+import { useEffect, useState } from 'react';
 
 export default function FeatureFilter() {
+  const [features, setFeatures] = useState([]);
+
+  useEffect(() => {
+    const fetchFeatures = async () => {
+      try {
+        const response = await fetch(
+          'https://amaranoc-4b1df-default-rtdb.firebaseio.com/features.json'
+        );
+        if (!response.ok) throw new Error('Failed to fetch features');
+        const data = await response.json();
+        setFeatures(data);
+      } catch (error) {
+        console.error('Error fetching features:', error);
+      }
+    };
+
+    fetchFeatures();
+  }, []);
+
   return (
     <div className="featuresSection">
       <label className="sectionLabel">Առավելություններ</label>
