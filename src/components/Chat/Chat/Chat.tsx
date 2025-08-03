@@ -127,7 +127,7 @@ const Chat: React.FC = () => {
       {selectedUserInfo && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" style={{ width: '700px' }} onClick={(e) => e.stopPropagation()}>
-            <h3>User Information</h3>
+            <h3>{selectedUserInfo.email} - Information</h3>
             <p><strong>Identifier:</strong> {selectedUserInfo.email}</p>
             <p>
               <strong>Created:</strong>{" "}
