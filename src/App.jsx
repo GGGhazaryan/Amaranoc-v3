@@ -6,9 +6,11 @@ import RightContent from './components/RightContent/RightContent';
 import GeneralFooter from './components/GeneralFooter/GeneralFooter';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Chat from './components/Chat/Chat/Chat';
+import Login from './components/Registration/LoginRegister'; 
 import './css/App.css';
 import './css/index.css';
-import { useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,18 +40,26 @@ function App() {
   }
 
   return (
-    <div className="App">
+   
+    <>
       <Header />
-      <div className="mainContentWrapper">
-        <div className="rightContentWrapper">
-          <LeftContent />
-          <RightContent />
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={
+          <div className="mainContentWrapper">
+            <div className="rightContentWrapper">
+              <LeftContent />
+              <RightContent />
+            </div>
+          </div>
+        } />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
       <GeneralFooter />
       <Footer />
-    </div>
+    </>
   );
+  
 }
 
 export default App;

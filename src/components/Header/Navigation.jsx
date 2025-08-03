@@ -1,8 +1,12 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 const navLinks = [
   { href: 'https://amaranoc.am/am', text: 'Գլխավոր' },
   { href: 'https://amaranoc.am/am/sales', text: 'Զեղչեր' },
   { href: 'https://amaranoc.am/am/services', text: 'Ծառայություններ' },
-  { href: 'https://amaranoc.am/am/about-us', text: 'Մեր մասին' }
+  { href: 'https://amaranoc.am/am/about-us', text: 'Մեր մասին' },
+   { href: '/Chat', text: 'Չատ' }
 ];
 
 export default function Navigation() {

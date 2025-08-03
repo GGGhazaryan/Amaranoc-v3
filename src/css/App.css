@@ -46,7 +46,8 @@ header {
 .option1,
 .option2,
 .option3,
-.option4 {
+.option4,
+ .option5{
     color: black;
     cursor: pointer;
     font-weight: bold;
@@ -66,7 +67,8 @@ header {
 .option1:hover,
 .option2:hover,
 .option3:hover,
-.option4:hover {
+.option4:hover,
+.option5:hover {
     text-decoration: underline;
     text-decoration-color: rgb(255, 145, 0);
     text-decoration-thickness: 2px;
