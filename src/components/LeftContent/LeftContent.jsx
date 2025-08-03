@@ -11,7 +11,7 @@ import FeatureFilter from './FeatureFilter';
 
 export default function LeftContent() {
   return (
-    <aside className="container">
+    <aside className="container" style={{marginTop:"15%"}}>
       <div className="mainLeftContentDiv">
         <RegionFilter />
         <PriceFilter />
