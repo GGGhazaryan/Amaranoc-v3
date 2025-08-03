@@ -628,7 +628,7 @@ header {
   top: 60px;
   left: 0;
   width: 100%;
-  background: white;
+  background: black;
   border-top: 1px solid #ddd;
   z-index: 1099;
   padding: 15px 20px;
@@ -697,7 +697,6 @@ header {
     gap: 15px;
   }
 
-  /* Кнопки */
   .allBtn,
   .yesBtn,
   .noBtn {
