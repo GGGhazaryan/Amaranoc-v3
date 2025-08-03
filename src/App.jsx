@@ -7,7 +7,7 @@ import GeneralFooter from './components/GeneralFooter/GeneralFooter';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Chat from './components/Chat/Chat/Chat';
-import Login from './components/Registration/LoginRegister'; 
+import Login from './components/Registration/LoginRegister';
 import './css/App.css';
 import './css/index.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -31,16 +31,16 @@ function App() {
   }, [navigate]);
 
   if (loading) {
-    return <div style={{textAlign:'center'}}>Loading...</div>;
+    return <div style={{ textAlign: 'center' }}>Loading...</div>;
   }
 
   if (!user) {
-    
+
     return null;
   }
 
   return (
-   
+
     <>
       <Header />
       <Routes>
@@ -59,7 +59,7 @@ function App() {
       <Footer />
     </>
   );
-  
+
 }
 
 export default App;
