@@ -138,7 +138,7 @@ const Chat: React.FC = () => {
 
 
             <p><strong>User UID:</strong> {selectedUserInfo.uid}</p>
-            <button onClick={closeModal}>Close</button>
+            <button style={{background:'red'}}onClick={closeModal}>X</button>
           </div>
         </div>
       )}
