@@ -82,7 +82,7 @@ const Chat: React.FC = () => {
         uid: data.uid,
       });
     } else {
-      alert("User info not found");
+      alert("Դուք փորձում եք դիտել ձեր տվյալները, դրանք դիտելու համար սեղմեք «օգտատեր» պատկերակի վրա։");
     }
   };
 
@@ -100,7 +100,7 @@ const Chat: React.FC = () => {
           <div key={msg.id} className="chat-message">
             <span
               className="chat-sender"
-              style={{ cursor: "pointer"}}
+              style={{ cursor: "pointer" }}
               onClick={() => showUserInfo(msg.senderUid)}
               title="Click to view user info"
             >
@@ -126,11 +126,17 @@ const Chat: React.FC = () => {
 
       {selectedUserInfo && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content" style={{ width: '700px' }} onClick={(e) => e.stopPropagation()}>
             <h3>User Information</h3>
             <p><strong>Identifier:</strong> {selectedUserInfo.email}</p>
-            <p><strong>Created:</strong> {selectedUserInfo.createdAt ? selectedUserInfo.createdAt.toString() : "N/A"}</p>
-            <p><strong>Signed In:</strong> {selectedUserInfo.lastSignInTime}</p>
+         <p>
+  <strong>Created:</strong>{" "}
+  {selectedUserInfo.createdAt
+    ? selectedUserInfo.createdAt.toString().replace(/\s*\(.*?\)/g, "")
+    : ""}
+</p>
+
+
             <p><strong>User UID:</strong> {selectedUserInfo.uid}</p>
             <button onClick={closeModal}>Close</button>
           </div>
