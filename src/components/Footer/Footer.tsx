@@ -1,4 +1,6 @@
-export default function Footer() {
+import React from "react";
+
+export default function Footer(): React.ReactElement {
   return (
     <div className="finalFooter">
       <div className="footerGlass">
