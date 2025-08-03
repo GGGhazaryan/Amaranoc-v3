@@ -1,6 +1,6 @@
 export default function Logo() {
   return (
-    <a href="https://amaranoc.am">
+    <a href="../">
       <img className="logo" src="logo.svg" alt="amaranoclogo" />
     </a>
   );
