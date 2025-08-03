@@ -57,12 +57,6 @@ header {
     justify-content: center;
 }
 
-.option1 {
-    text-decoration: underline;
-    text-decoration-color: rgb(255, 145, 0);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 7px;
-}
 
 .option1:hover,
 .option2:hover,
