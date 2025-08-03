@@ -129,12 +129,12 @@ const Chat: React.FC = () => {
           <div className="modal-content" style={{ width: '700px' }} onClick={(e) => e.stopPropagation()}>
             <h3>User Information</h3>
             <p><strong>Identifier:</strong> {selectedUserInfo.email}</p>
-         <p>
-  <strong>Created:</strong>{" "}
-  {selectedUserInfo.createdAt
-    ? selectedUserInfo.createdAt.toString().replace(/\s*\(.*?\)/g, "")
-    : ""}
-</p>
+            <p>
+              <strong>Created:</strong>{" "}
+              {selectedUserInfo.createdAt
+                ? selectedUserInfo.createdAt.toString().replace(/\s*\(.*?\)/g, "")
+                : ""}
+            </p>
 
 
             <p><strong>User UID:</strong> {selectedUserInfo.uid}</p>
