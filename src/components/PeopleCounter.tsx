@@ -1,7 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export default function PeopleCounter({ label, min = 1, max = 99 }) {
-  const [count, setCount] = useState(min);
+type PeopleCounterProps = {
+  label?: string;
+  min?: number;
+  max?: number;
+};
+
+export default function PeopleCounter({
+  label,
+  min = 1,
+  max = 99,
+}: PeopleCounterProps): React.ReactElement {
+  const [count, setCount] = useState<number>(min);
 
   const increase = () => {
     setCount(prev => (prev < max ? prev + 1 : prev));
