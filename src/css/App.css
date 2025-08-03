@@ -535,3 +535,144 @@ header {
     font-size: 16px;
     margin-bottom: 10px;
 }
+
+@media (max-width: 1920px) {
+    .rightContentWrapper {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1400px) {
+    .rightContentWrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .container {
+        width: 250px;
+    }
+
+    .card {
+        width: 280px;
+    }
+
+    .allOptions {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .contentWrapper {
+        flex-direction: column;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .rightContentWrapper {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .allOptions {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .inputPlaceholder {
+        width: 100%;
+    }
+
+    .headerRightPlaceholder {
+        margin-left: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .rightContentWrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card {
+        height: auto;
+    }
+
+    .allOptions {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .mainIcons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .option1,
+    .option2,
+    .option3,
+    .option4,
+    .option5 {
+        font-size: 14px;
+    }
+
+    .inputPlaceholder {
+        width: 100%;
+    }
+
+    .card {
+        height: auto;
+    }
+
+    .container {
+        padding: 10px 5px;
+    }
+
+    .roomBtn,
+    .bathroomBtn,
+    .poolBtn {
+        width: 45px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .roomBtn6 {
+        width: 80px;
+    }
+
+    .bathroomBtn,
+    .poolBtn {
+        width: 90px;
+    }
+
+    .startInput,
+    .endInput {
+        width: 80px;
+    }
+
+    .peoplecountInput {
+        width: 60px;
+    }
+
+    .allBtn,
+    .yesBtn,
+    .noBtn {
+        width: 80px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
