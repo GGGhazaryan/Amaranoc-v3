@@ -71,7 +71,7 @@ export default function HeaderRight() {
               fontWeight: "bold",
             }}
           >
-            Выйти
+           <i className="fa fa-sign-out" aria-hidden="true"></i>
           </button>
         </div>
       )}
