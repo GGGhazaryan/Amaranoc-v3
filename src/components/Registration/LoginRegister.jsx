@@ -29,7 +29,7 @@ const LoginRegister = () => {
         await signInWithEmailAndPassword(auth, email, password);
       }
     } catch (err) {
-      setError(err.message);
+      setError("Սխալ: " + err.message);
     }
   };
 
@@ -37,14 +37,16 @@ const LoginRegister = () => {
     <div className="login-register-container">
       <div className="form-box" style={{ maxWidth: "400px", margin: "100px auto" }}>
         <div className="form-header">
-          <h2 className="form-title">{isRegister ? "Register" : "Login"}</h2>
+          <h2 className="form-title">
+            {isRegister ? "Գրանցում" : "Մուտք"}
+          </h2>
         </div>
         <form onSubmit={handleSubmit} className="form">
           {isRegister && (
             <div className="form-group">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Անուն"
                 className="form-input"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -55,7 +57,7 @@ const LoginRegister = () => {
           <div className="form-group">
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Էլ. փոստ"
               className="form-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -65,7 +67,7 @@ const LoginRegister = () => {
           <div className="form-group">
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Գաղտնաբառ"
               className="form-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -74,21 +76,21 @@ const LoginRegister = () => {
           </div>
           <div className="form-group">
             <button type="submit" className="form-button">
-              {isRegister ? "Sign Up" : "Sign In"}
+              {isRegister ? "Գրանցվել" : "Մուտք գործել"}
             </button>
           </div>
         </form>
         {error && <div className="form-error">{error}</div>}
         <div className="form-footer">
           <div className="toggle-text">
-            {isRegister ? "Already have an account?" : "Don't have an account?"}
+            {isRegister ? "Արդեն ունեք հաշիվ?" : "Դեռ չունե՞ք հաշիվ:"}
           </div>
           <button
             className="toggle-button"
             onClick={() => setIsRegister(!isRegister)}
             type="button"
           >
-            {isRegister ? "Login" : "Register"}
+            {isRegister ? "Մուտք" : "Գրանցվել"}
           </button>
         </div>
       </div>
