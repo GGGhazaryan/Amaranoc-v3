@@ -87,7 +87,7 @@ const Chat: React.FC = () => {
           onChange={(e) => setNewMessage(e.target.value)}
           className="chat-input"
         />
-        <button onClick={handleSend} className="chat-send-button">Send</button>
+        <button onClick={handleSend} className="chat-send-button"> <i className="fa fa-paper-plane" aria-hidden="true"></i></button>
       </div>
     </div>
   );
