@@ -114,7 +114,7 @@ const Chat: React.FC = () => {
       <div className="chat-input-area">
         <input
           type="text"
-          placeholder="Type a message..."
+          placeholder="Մուտքագրեք հաղորդագրություն..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           className="chat-input"
