@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import { auth } from "../../firebase";
-import { signOut } from "firebase/auth";
+import { signOut, User } from "firebase/auth";
 
-export default function HeaderRight() {
-  const [showPopup, setShowPopup] = useState(false);
-  const user = auth.currentUser;
+export default function HeaderRight(): React.ReactElement {
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const user: User | null = auth.currentUser;
 
   const togglePopup = () => setShowPopup((prev) => !prev);
 
@@ -14,15 +14,20 @@ export default function HeaderRight() {
     setShowPopup(false);
   };
 
-  if (!user) return (
-    <div className="headerRightPlaceholder">
-      <div className="mainIcons">
-        <i className="fa-solid fa-globe"></i>
-        <i className="fa fa-user" aria-hidden="true" style={{ cursor: "default" }}></i>
+  if (!user)
+    return (
+      <div className="headerRightPlaceholder">
+        <div className="mainIcons">
+          <i className="fa-solid fa-globe"></i>
+          <i
+            className="fa fa-user"
+            aria-hidden="true"
+            style={{ cursor: "default" }}
+          ></i>
+        </div>
+        <SearchInput />
       </div>
-      <SearchInput />
-    </div>
-  );
+    );
 
   return (
     <div className="headerRightPlaceholder" style={{ position: "relative" }}>
@@ -53,10 +58,19 @@ export default function HeaderRight() {
             color: "#333",
           }}
         >
-          <p><strong>Identifier:</strong> {user.displayName || user.email || "Anonymous"}</p>
-          <p><strong>Created:</strong> {user.metadata.creationTime || "Unknown"}</p>
-          <p><strong>Signed In:</strong> {user.metadata.lastSignInTime || "Unknown"}</p>
-          <p><strong>User UID:</strong> {user.uid}</p>
+          <p>
+            <strong>Identifier:</strong>{" "}
+            {user.displayName || user.email || "Anonymous"}
+          </p>
+          <p>
+            <strong>Created:</strong> {user.metadata.creationTime || "Unknown"}
+          </p>
+          <p>
+            <strong>Signed In:</strong> {user.metadata.lastSignInTime || "Unknown"}
+          </p>
+          <p>
+            <strong>User UID:</strong> {user.uid}
+          </p>
           <button
             onClick={handleLogout}
             style={{
@@ -71,7 +85,7 @@ export default function HeaderRight() {
               fontWeight: "bold",
             }}
           >
-           <i className="fa fa-sign-out" aria-hidden="true"></i>
+            <i className="fa fa-sign-out" aria-hidden="true"></i>
           </button>
         </div>
       )}
