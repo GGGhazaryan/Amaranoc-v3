@@ -1,17 +1,20 @@
 import "../../css/LoginRegister.css";
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "@/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth, db } from "../../firebase";
 import { setDoc, doc } from "firebase/firestore";
 
-const LoginRegister = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [isRegister, setIsRegister] = useState(false);
-  const [error, setError] = useState(null);
+const LoginRegister = (): React.ReactElement => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [isRegister, setIsRegister] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     try {
@@ -28,8 +31,8 @@ const LoginRegister = () => {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-    } catch (err) {
-      setError("Սխալ: " + err.message);
+    } catch (err: any) {
+      setError("Սխալ: " + (err.message || "Անհայտ սխալ"));
     }
   };
 
