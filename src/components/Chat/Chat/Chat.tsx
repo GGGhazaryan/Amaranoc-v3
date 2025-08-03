@@ -102,7 +102,7 @@ const Chat: React.FC = () => {
               className="chat-sender"
               style={{ cursor: "pointer" }}
               onClick={() => showUserInfo(msg.senderUid)}
-              title="Click to view user info"
+              title="Սեղմեք - օգտատիրոջ տեղեկությունները դիտելու համար"
             >
               {msg.senderName}
             </span>
