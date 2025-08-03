@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function NightStayFilter() {
-  const [nightOptions, setNightOptions] = useState([]);
+export default function NightStayFilter(): React.ReactElement {
+  const [nightOptions, setNightOptions] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchNightOptions = async () => {
@@ -10,7 +10,7 @@ export default function NightStayFilter() {
           'https://amaranoc-4b1df-default-rtdb.firebaseio.com/nightOptions.json'
         );
         if (!response.ok) throw new Error('Failed to fetch nightOptions');
-        const data = await response.json();
+        const data: string[] = await response.json();
         setNightOptions(data);
       } catch (error) {
         console.error('Error fetching nightOptions:', error);
