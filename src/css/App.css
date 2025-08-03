@@ -600,26 +600,137 @@ header {
     }
 }
 
-@media (max-width: 768px) {
-    .rightContentWrapper {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .card {
-        height: auto;
-    }
-
-    .allOptions {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .mainIcons {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+.burgerMenuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  z-index: 1100;
 }
+
+.burgerMenuBtn div {
+  width: 100%;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+}
+
+.mobileMenu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #ddd;
+  z-index: 1099;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+.mobileMenu.open {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .allOptions,
+  .headerRightPlaceholder {
+    display: none;
+  }
+
+  .burgerMenuBtn {
+    display: flex;
+  }
+  @media (max-width: 600px) {
+  .contentWrapper {
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 10px 15px;
+  }
+
+  .rightContentWrapper {
+    grid-template-columns: 1fr !important;
+    padding: 10px 15px !important;
+  }
+
+  .card {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 20px;
+  }
+
+  .allOptions {
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .option1,
+  .option2,
+  .option3,
+  .option4,
+  .option5 {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+
+  .inputPlaceholder {
+    width: 100% !important;
+  }
+
+  .headerRightPlaceholder {
+    margin-left: 0 !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 15px;
+  }
+
+  /* Кнопки */
+  .allBtn,
+  .yesBtn,
+  .noBtn {
+    width: 100%;
+    max-width: 180px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .roomBtn,
+  .bathroomBtn,
+  .poolBtn {
+    width: 60px !important;
+    height: 40px !important;
+    font-size: 15px !important;
+  }
+
+  .roomBtn6 {
+    width: 100px !important;
+  }
+
+  .startInput,
+  .endInput {
+    width: 90px !important;
+  }
+
+  .peoplecountInput {
+    width: 80px !important;
+  }
+}
+
+}
+
 
 @media (max-width: 600px) {
     .option1,
