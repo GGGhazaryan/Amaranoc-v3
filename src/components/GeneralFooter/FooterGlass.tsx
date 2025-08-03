@@ -1,6 +1,7 @@
+import React from "react";
 import FooterForm from './FooterForm';
 
-export default function FooterGlass() {
+export default function FooterGlass(): React.ReactElement {
   return (
     <div className="footerGlass">
       <h2>Տեղադրել հայտարարություն</h2>
