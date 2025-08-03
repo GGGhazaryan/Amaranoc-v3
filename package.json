@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "eslint.config.js",
   "devDependencies": {
+    "@types/react": "^19.1.9",
     "@vitejs/plugin-react": "^4.7.0"
   },
   "scripts": {

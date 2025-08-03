@@ -1,5 +1,7 @@
-export default function FooterForm() {
-  const handleSubmit = (e) => {
+import React, { FormEvent } from "react";
+
+export default function FooterForm(): React.ReactElement {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert('Ձեր հայտը ուղարկված է։');
   };
