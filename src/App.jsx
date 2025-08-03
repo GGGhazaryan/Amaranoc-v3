@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import LeftContent from './components/LeftContent/LeftContent';
 import RightContent from './components/RightContent/RightContent';
@@ -12,8 +12,8 @@ import './css/App.css';
 import './css/index.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-function App(): React.ReactElement {
-  const [user, setUser] = useState<User | null>(null);
+function App() {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -31,21 +31,25 @@ function App(): React.ReactElement {
   }, [navigate]);
 
   if (loading) {
-    return <div style={{ textAlign: 'center' }}>Loading...</div>;
+    return <div style={{textAlign:'center'}}>Loading...</div>;
   }
 
   if (!user) {
+    
     return null;
   }
 
   return (
+   
     <>
       <Header />
       <Routes>
         <Route path="/" element={
           <div className="mainContentWrapper">
-            <LeftContent />
-            <RightContent />
+            <div className="rightContentWrapper">
+              <LeftContent />
+              <RightContent />
+            </div>
           </div>
         } />
         <Route path="/chat" element={<Chat />} />
@@ -55,6 +59,7 @@ function App(): React.ReactElement {
       <Footer />
     </>
   );
+  
 }
 
 export default App;
