@@ -6,8 +6,10 @@
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   font-family: "Segoe UI", sans-serif;
-  border: 1px solid #ff9800;
+  border: 2px solid #ff9800;
   transition: all 0.3s ease-in-out;
+  margin-top:7%;
+  box-shadow:1px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
 .chat-container:hover {
