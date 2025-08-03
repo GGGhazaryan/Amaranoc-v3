@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function BathroomFilter() {
-  const [bathroomCounts, setBathroomCounts] = useState([]);
+export default function BathroomFilter(): React.ReactElement {
+  const [bathroomCounts, setBathroomCounts] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchBathroomCounts = async () => {
@@ -10,7 +10,7 @@ export default function BathroomFilter() {
           'https://amaranoc-4b1df-default-rtdb.firebaseio.com/bathroomCounts.json'
         );
         if (!response.ok) throw new Error('Failed to fetch bathroomCounts');
-        const data = await response.json();
+        const data: string[] = await response.json();
         setBathroomCounts(data);
       } catch (error) {
         console.error('Error fetching bathroomCounts:', error);
