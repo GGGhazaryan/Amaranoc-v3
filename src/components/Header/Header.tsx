@@ -3,8 +3,8 @@ import Logo from './Logo';
 import Navigation from './Navigation';
 import HeaderRight from './HeaderRight';
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function Header(): React.ReactElement {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
