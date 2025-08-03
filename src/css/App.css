@@ -610,12 +610,13 @@ header {
   border: none;
   cursor: pointer;
   padding: 0;
-  margin-left: auto;
+  margin-left: 0;
+  margin-top:2%;
   z-index: 1100;
 }
 
 .burgerMenuBtn div {
-  width: 100%;
+  width: 90%;
   height: 3px;
   background: black;
   border-radius: 2px;
@@ -628,14 +629,16 @@ header {
   top: 60px;
   left: 0;
   width: 100%;
-  background: black;
   border-top: 1px solid #ddd;
   z-index: 1099;
+  color:black;
   padding: 15px 20px;
   box-sizing: border-box;
 }
 
 .mobileMenu.open {
+    
+     color:black;
   display: flex;
 }
 
