@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function FeatureFilter() {
-  const [features, setFeatures] = useState([]);
+export default function FeatureFilter(): React.ReactElement {
+  const [features, setFeatures] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchFeatures = async () => {
@@ -10,7 +10,7 @@ export default function FeatureFilter() {
           'https://amaranoc-4b1df-default-rtdb.firebaseio.com/features.json'
         );
         if (!response.ok) throw new Error('Failed to fetch features');
-        const data = await response.json();
+        const data: string[] = await response.json();
         setFeatures(data);
       } catch (error) {
         console.error('Error fetching features:', error);

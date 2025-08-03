@@ -1,4 +1,5 @@
-import '../../css/App.css'
+import React from 'react';
+import '../../css/App.css';
 import RegionFilter from './RegionFilter';
 import PriceFilter from './PriceFilter';
 import StartEndInput from './StartEndInput';
@@ -9,9 +10,9 @@ import BathroomFilter from './BathroomFilter';
 import PoolFilter from './PoolFilter';
 import FeatureFilter from './FeatureFilter';
 
-export default function LeftContent() {
+export default function LeftContent(): React.ReactElement {
   return (
-    <aside className="container" style={{marginTop:"15%",height:'1500px'}}>
+    <aside className="container" style={{ marginTop: "15%", height: '1500px' }}>
       <div className="mainLeftContentDiv">
         <RegionFilter />
         <PriceFilter />
