@@ -7,7 +7,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", sans-serif;
   margin-top: 15%;
-  border:1px solid gray;
+  border:1px solid rgb(165, 161, 161);
 }
 
 .chat-header {
@@ -34,12 +34,12 @@
 
 .chat-sender {
   font-weight: 600;
-  color: #1d72b8;
+  color: black;
   margin-right: 0.5rem;
 }
 
 .chat-text {
-  color: #333;
+  color: black;
 }
 
 .chat-input-area {
