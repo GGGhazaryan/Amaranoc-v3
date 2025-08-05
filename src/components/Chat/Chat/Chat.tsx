@@ -66,7 +66,7 @@ const Chat: React.FC = () => {
       });
       setNewMessage("");
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.log(error);
     }
   };
 
