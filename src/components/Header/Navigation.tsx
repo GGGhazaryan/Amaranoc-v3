@@ -6,7 +6,7 @@ const navLinks: { href: string; text: string }[] = [
   { href: 'https://amaranoc.am/am/sales', text: 'Զեղչեր' },
   { href: 'https://amaranoc.am/am/services', text: 'Ծառայություններ' },
   { href: 'https://amaranoc.am/am/about-us', text: 'Մեր մասին' },
-  { href: '/Chat', text: 'Չատ' }
+  { href: '/Chat', text: 'Չատ' },
 ];
 
 export default function Navigation(): React.ReactElement {

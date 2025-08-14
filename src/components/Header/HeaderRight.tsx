@@ -5,6 +5,7 @@ import { signOut, User } from "firebase/auth";
 
 export default function HeaderRight(): React.ReactElement {
   const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [liked, setLiked] = useState(false); // для сердечка
   const user: User | null = auth.currentUser;
 
   const togglePopup = () => setShowPopup((prev) => !prev);
@@ -31,8 +32,23 @@ export default function HeaderRight(): React.ReactElement {
 
   return (
     <div className="headerRightPlaceholder" style={{ position: "relative" }}>
-      <div className="mainIcons">
-        <i className="fa-solid fa-globe"></i>
+      <div className="mainIcons" style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <i className="fa-solid fa-globe"  style={{
+           color:'black',
+           cursor:"pointer",
+          }}></i>
+
+       
+        <i
+          className="fa fa-heart"
+          style={{
+           color:'black',
+           cursor:"pointer",
+          }}
+          onClick={() => setLiked(!liked)}
+        ></i>
+
+   
         <i
           className="fa fa-user"
           aria-hidden="true"
@@ -40,7 +56,9 @@ export default function HeaderRight(): React.ReactElement {
           style={{ cursor: "pointer", position: "relative" }}
         ></i>
       </div>
+
       <SearchInput />
+
       {showPopup && (
         <div
           className="user-popup"
