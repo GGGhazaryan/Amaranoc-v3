@@ -12,7 +12,7 @@ import FeatureFilter from './FeatureFilter';
 
 export default function LeftContent(): React.ReactElement {
   return (
-    <aside className="container" style={{ marginTop: "15%", height: '1500px' }}>
+    <aside className="container" style={{ marginTop: "19%", height: 'max-content' }}>
       <div className="mainLeftContentDiv">
         <RegionFilter />
         <PriceFilter />

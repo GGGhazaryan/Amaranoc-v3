@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import { auth } from "../../firebase";
 import { signOut, User } from "firebase/auth";
+import LikedPopup from "../LikedPopup";
+import { useLikedStore } from "../../store";
 
 export default function HeaderRight(): React.ReactElement {
-  const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [liked, setLiked] = useState(false); // для сердечка
+  const [showPopup, setShowPopup] = useState(false);
+  const [showLiked, setShowLiked] = useState(false);
+
   const user: User | null = auth.currentUser;
+  const { likedCards } = useLikedStore();
+  const likedCount = likedCards.length;
 
   const togglePopup = () => setShowPopup((prev) => !prev);
+  const toggleLikedPopup = () => setShowLiked((prev) => !prev);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -20,11 +26,7 @@ export default function HeaderRight(): React.ReactElement {
       <div className="headerRightPlaceholder">
         <div className="mainIcons">
           <i className="fa-solid fa-globe"></i>
-          <i
-            className="fa fa-user"
-            aria-hidden="true"
-            style={{ cursor: "default" }}
-          ></i>
+          <i className="fa fa-user" aria-hidden="true" style={{ cursor: "default" }}></i>
         </div>
         <SearchInput />
       </div>
@@ -33,22 +35,36 @@ export default function HeaderRight(): React.ReactElement {
   return (
     <div className="headerRightPlaceholder" style={{ position: "relative" }}>
       <div className="mainIcons" style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-        <i className="fa-solid fa-globe"  style={{
-           color:'black',
-           cursor:"pointer",
-          }}></i>
+        <i className="fa-solid fa-globe" style={{ color: "black", cursor: "pointer" }}></i>
 
-       
-        <i
-          className="fa fa-heart"
-          style={{
-           color:'black',
-           cursor:"pointer",
-          }}
-          onClick={() => setLiked(!liked)}
-        ></i>
+        <div style={{ position: 'relative' }}>
+          <i
+            className="fa fa-heart"
+            style={{ color: "black", cursor: "pointer" }}
+            onClick={toggleLikedPopup}
+          ></i>
+          {likedCount > 0 && (
+            <span
+              style={{
+                position: 'absolute',
+                bottom: -8,
+                right: -10,
+                background: '#ff0000',
+                color: '#fff',
+                borderRadius: '50%',
+                padding: '2px 6px',
+                fontSize: '12px',
+                lineHeight: '1',
+                fontWeight: 'bold',
+                minWidth: '20px',
+                textAlign: 'center',
+              }}
+            >
+              {likedCount}
+            </span>
+          )}
+        </div>
 
-   
         <i
           className="fa fa-user"
           aria-hidden="true"
@@ -105,6 +121,27 @@ export default function HeaderRight(): React.ReactElement {
           >
             <i className="fa fa-sign-out" aria-hidden="true"></i>
           </button>
+        </div>
+      )}
+
+      {showLiked && (
+        <div
+          className="liked-popup"
+          style={{
+            position: "absolute",
+            top: "40px",
+            right: "50px",
+            background: "white",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+            borderRadius: "8px",
+            padding: "1rem",
+            width: "350px",
+            zIndex: 100,
+            fontSize: "14px",
+            color: "#333",
+          }}
+        >
+          <LikedPopup />
         </div>
       )}
     </div>

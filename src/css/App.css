@@ -175,6 +175,7 @@ header {
 
 .customCheckbox input:checked+.checkmark {
     border-color: orange;
+    background-color: orange;
 }
 
 .customCheckbox input:checked+.checkmark::after {

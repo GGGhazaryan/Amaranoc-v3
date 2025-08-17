@@ -3,7 +3,7 @@ import Card from './Card';
 
 export default function RightContent() {
   return (
-    <main className="rightContentWrapper" style={{marginTop:"5%"}}>
+    <main className="rightContentWrapper" style={{ marginTop: "5%", gap: '10px', padding: '10px' }}>
       {cards.map(card => (
         <Card key={card.id} card={card} />
       ))}
