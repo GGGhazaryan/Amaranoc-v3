@@ -45,10 +45,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={
+
           <div className="mainContentWrapper">
+
             <div className="rightContentWrapper">
               <LeftContent />
               <RightContent />
+
             </div>
           </div>
         } />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLikedStore } from '../../store';
 
 type CardProps = {
@@ -15,9 +15,23 @@ export default function Card({ card }: CardProps): React.ReactElement {
   const { likedCards, toggleLike } = useLikedStore();
   const liked = likedCards.some(c => c.title === card.title);
 
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <>
-      <div className="card" style={{ backgroundImage: `url(${card.image})` }}>
+      {!loaded && <div className="card skeleton"></div>} {/* skeleton блок */}
+
+      <div
+        className="card"
+        style={{ backgroundImage: `url(${card.image})`, display: loaded ? 'flex' : 'none' }}
+      >
+        {/* Загрузка картинки для отслеживания завершения */}
+        <img
+          src={card.image}
+          alt={card.title}
+          style={{ display: 'none' }}
+          onLoad={() => setLoaded(true)}
+        />
         <div className="cardInfo">
           <h3>{card.title}</h3>
           <p>{card.price}</p>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../css/App.css';
 import RegionFilter from './RegionFilter';
 import PriceFilter from './PriceFilter';
@@ -11,6 +11,23 @@ import PoolFilter from './PoolFilter';
 import FeatureFilter from './FeatureFilter';
 
 export default function LeftContent(): React.ReactElement {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => setLoaded(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!loaded) {
+    
+    return (
+      <aside className="container" style={{ marginTop: "19%", height: 'max-content' }}>
+        <div className="mainLeftContentDiv skeleton" style={{ height: '500px' }}></div>
+      </aside>
+    );
+  }
+
   return (
     <aside className="container" style={{ marginTop: "19%", height: 'max-content' }}>
       <div className="mainLeftContentDiv">
