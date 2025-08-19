@@ -443,7 +443,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40%
+    margin-top: 30%;
+    border-radius:30px;
 }
 
 .footerGlass {
@@ -849,6 +850,8 @@ header {
 .itemsInHeader {
     cursor:pointer;
 }
-.grid2{
+.grid2,.grid3{
     cursor:pointer;
+    border-bottom: 2px solid #c4c2c2;
 }
+

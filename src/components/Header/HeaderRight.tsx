@@ -25,7 +25,9 @@ export default function HeaderRight(): React.ReactElement {
     return (
       <div className="headerRightPlaceholder">
         <div className="mainIcons">
-          <i className="fa-solid fa-globe"></i>
+          <i  className="fa-solid fa-globe">
+            
+          </i>
           <i className="fa fa-user" aria-hidden="true" style={{ cursor: "default" }}></i>
         </div>
         <SearchInput />
