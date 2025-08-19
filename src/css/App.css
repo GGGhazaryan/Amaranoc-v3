@@ -793,50 +793,59 @@ header {
 }
 
 .skeleton-overlay {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
-  background-size: 400% 100%;
-  animation: shimmer 1.5s infinite;
-  z-index: 2000;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: 2000;
 }
+
 @keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
+
 .skeleton-hidden {
-  display: none !important;
+    display: none !important;
 }
 
 .headersContainer {
-  display: flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom: 20px;
-  border: none;
-  width: 100%;         
-  max-width: 1050px;   
-  overflow-x: auto;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: none;
+    width: 100%;
+    max-width: 1050px;
+    background: #fff;
+    border-bottom: 2px solid #ddd;
+    overflow-x: auto;
 }
 
 .rightContentHeader {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000;
-  border: none;
-  width: auto;
-  height: auto;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    border: none;
+    width: auto;
+    height: auto;
 }
 
 
 .rightContentWrapper {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.itemsInHeader {
+    cursor:pointer;
 }
