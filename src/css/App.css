@@ -811,3 +811,32 @@ header {
 .skeleton-hidden {
   display: none !important;
 }
+
+.headersContainer {
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom: 20px;
+  border: none;
+  width: 100%;         
+  max-width: 1050px;   
+  overflow-x: auto;    
+}
+
+.rightContentHeader {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  border: none;
+  width: auto;
+  height: auto;
+}
+
+
+.rightContentWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}

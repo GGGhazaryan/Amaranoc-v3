@@ -24,13 +24,16 @@ export default function LeftContent(): React.ReactElement {
     return (
       <aside className="container" style={{ marginTop: "19%", height: 'max-content' }}>
         <div className="mainLeftContentDiv skeleton" style={{ height: '500px' }}></div>
+        
       </aside>
     );
   }
 
   return (
     <aside className="container" style={{ marginTop: "19%", height: 'max-content' }}>
+      
       <div className="mainLeftContentDiv">
+       
         <RegionFilter />
         <PriceFilter />
         <StartEndInput />
@@ -42,6 +45,7 @@ export default function LeftContent(): React.ReactElement {
         <PoolFilter />
         <FeatureFilter />
       </div>
+      
     </aside>
   );
 }

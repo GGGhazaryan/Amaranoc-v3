@@ -35,18 +35,18 @@ export default function SearchInput(): React.ReactElement {
             <div
               className="popup"
               ref={popupRef}
-             style={{
-  overflowX: "auto",
-  display: "flex",
-  gap: "15px",
-  color: "white",
-  minWidth: "600px",  
-  maxWidth: "90vw",   
-  flexWrap: "wrap",  
-}}
+              style={{
+                overflowX: "auto",
+                display: "flex",
+                gap: "15px",
+                color: "white",
+                minWidth: "600px",
+                maxWidth: "90vw",
+                flexWrap: "wrap",
+              }}
 
             >
-            <i className="fa fa-times" aria-hidden="true" style={{ cursor: 'pointer', color: 'black' }} onClick={handleClose}></i>
+              <i className="fa fa-times" aria-hidden="true" style={{ cursor: 'pointer', color: 'black' }} onClick={handleClose}></i>
               {filteredCards.map((card) => (
                 <Card key={`${card.title}-${card.image}`} card={card} />
               ))}
