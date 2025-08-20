@@ -31,7 +31,7 @@ export default function RightContent(): React.ReactElement {
 
       <div style={{ display: 'flex', alignItems: 'center', maxWidth: '1050px', padding: '10px', borderBottom: "2px solid #ddd" }}>
         <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px' ,alignItems:'center'}}>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
             <img className="grid2" src="./public/grid-2.png" alt="grid2icon" />
           </div>
@@ -54,7 +54,7 @@ export default function RightContent(): React.ReactElement {
         {cards.map(card => (
           <Card key={card.id} card={card} />
         ))}
-       
+
       </div>
     </main>
   );
