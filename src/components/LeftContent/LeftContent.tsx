@@ -22,7 +22,7 @@ export default function LeftContent(): React.ReactElement {
   if (!loaded) {
     
     return (
-      <aside className="container" style={{ marginTop: "19%", height: 'max-content' }}>
+      <aside className="container" style={{ marginTop: "19%", height: 'max-content',padding:'15 25'  }}>
         <div className="mainLeftContentDiv skeleton" style={{ height: '500px' }}></div>
         
       </aside>

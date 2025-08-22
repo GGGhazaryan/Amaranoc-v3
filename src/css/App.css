@@ -127,14 +127,16 @@ header {
 .container {
     width: 300px;
     height: max-content;
-    border: 1px solid gray;
+    border: 0.1px solid rgb(172, 169, 169);
     border-radius: 15px;
-    padding: 10px;
+
+    padding:10px;
     background: #fff
 }
 
 .mainLeftContentDiv {
-    width: 100%
+    width: 100%;
+   
 }
 
 .h3leftcontent {
@@ -209,20 +211,17 @@ header {
 .priceBtns {
     border-radius: 100%;
     height: 30px;
+    margin-left:3px;
     border: none;
     cursor: pointer;
     width: 30px;
     background: #fff;
-    border: 1px solid gray;
+    border: 0.1px solid gray;
     color: gray;
     font-weight: 700
 }
 
-#priceBtn1 {
-    background: #000;
-    color: #fff;
-    border: none
-}
+
 
 .priceBtns:hover {
     opacity: .7
@@ -400,7 +399,7 @@ header {
     flex-direction: column;
     justify-content: flex-end;
     color: #fff;
-    gap: 15px
+    gap: 25px
 }
 
 .card:hover {
@@ -420,6 +419,7 @@ header {
     position: relative;
     padding: 16px 20px;
     z-index: 1;
+
     backdrop-filter: brightness(1.1)
 }
 
@@ -854,4 +854,7 @@ header {
     cursor:pointer;
     border-bottom: 2px solid #c4c2c2;
 }
-
+.mapIcon:hover{
+    opacity:0.8;
+    cursor:pointer;
+}

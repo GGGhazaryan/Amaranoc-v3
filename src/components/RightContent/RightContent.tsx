@@ -15,10 +15,16 @@ export default function RightContent(): React.ReactElement {
 
   return (
     <main className="rightContentMain" style={{ marginTop: "5%" }}>
+       <div className="container_forGeneralHeader">
+        <div className="map">
+      <img className="mapIcon" src="../../public/map.png" alt="map"/>
+        </div>
+       </div>
       <div className="headersContainer" style={{ alignItems: 'center' }}>
         <div style={{ fontSize: "24px", cursor: "pointer", borderBottom: "5px solid #ddd", width: '30px', height: '30px', borderRadius: '50%' }}>
           <i className="fas fa-arrow-left" style={{ fontSize: "24px", cursor: "pointer" }}></i>
         </div>
+       
         {[1, 2, 3, 4, 5, 6].map(i => (
           <div className="rightContentHeader" key={i}>
             <img className="itemsInHeader" src={`./item${i}.png`} alt={`item${i}`} />
@@ -27,6 +33,7 @@ export default function RightContent(): React.ReactElement {
         <div style={{ fontSize: "24px", cursor: "pointer", borderBottom: "5px solid #ddd", width: '30px', height: '30px', borderRadius: '50%' }}>
           <i className="fas fa-arrow-right" style={{ fontSize: "24px", cursor: "pointer" }}></i>
         </div>
+       
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', maxWidth: '1050px', padding: '10px', borderBottom: "2px solid #ddd" }}>
