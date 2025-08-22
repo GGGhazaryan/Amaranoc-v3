@@ -33,10 +33,10 @@ export default function RightContent(): React.ReactElement {
         <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
-            <img className="grid2" src="./public/grid-2.png" alt="grid2icon" />
+            <img className="grid2" src="./grid-2.png" alt="grid2icon" />
           </div>
           <div onClick={handleGrid3Click} style={{ cursor: 'pointer' }}>
-            <img className="grid3" src="./public/grid-3.png" alt="grid3icon" />
+            <img className="grid3" src="./grid-3.png" alt="grid3icon" />
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ export default function RightContent(): React.ReactElement {
         style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
-
+          
           width: '400px !important',
           gap: '5px'
         }}
