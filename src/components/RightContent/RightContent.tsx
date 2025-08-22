@@ -46,7 +46,7 @@ export default function RightContent(): React.ReactElement {
         style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          
+
           width: '400px !important',
           gap: '5px'
         }}

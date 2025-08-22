@@ -21,6 +21,6 @@ const cards = [
   { id: 20, image: '4photo.webp', title: 'Երևան', price: 'Սկսած 118,000 ֏', location: 'Երևան', people: 'Մինչև 5 մարդ' }
 ];
 
-export default cards
+export default cards  
 
 

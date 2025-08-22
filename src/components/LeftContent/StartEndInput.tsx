@@ -1,26 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import cards from '../../data/DataBase';
+import Popup from '../Popup';
 
 export default function StartEndInput() {
-  const [loaded, setLoaded] = useState(false);
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [filteredCards, setFilteredCards] = useState(cards);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
+  const handleSearch = () => {
+    const startNum = Number(start.replace(/\D/g, '')) || 0;
+    const endNum = Number(end.replace(/\D/g, '')) || Infinity;
 
-  if (!loaded) {
-    return (
-      <div className="startEndInputsArray">
-        <div className="skeleton startInput" style={{ height: '30px', width: '100px', borderRadius: '5px' }}></div>
-        <div className="skeleton endInput" style={{ height: '30px', width: '100px', borderRadius: '5px', marginLeft: '10px' }}></div>
-      </div>
-    );
-  }
+    const filtered = cards.filter(card => {
+      const priceNum = Number((card.price || '0').replace(/\D/g, ''));
+      return priceNum >= startNum && priceNum <= endNum;
+    });
+
+    setFilteredCards(filtered);
+    setShowPopup(true);
+  };
+
+  const inputStyle: React.CSSProperties = {
+    height: '30px',
+    width: '100px',
+    borderRadius: '5px',
+    marginRight:'3px'
+    
+  };
+
+  const buttonStyle: React.CSSProperties = {
+    padding:'5px',
+    cursor: 'pointer',
+    
+
+  };
 
   return (
-    <div className="startEndInputsArray">
-      <input type="text" className="startInput" placeholder="Սկսած" />_
-      <input type="text" className="endInput" placeholder="Միչնև" />
+    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+      <input
+        type="text"
+        placeholder="Սկսած"
+        value={start}
+        onChange={e => setStart(e.target.value)}
+        style={inputStyle}
+      />
+      <input
+        type="text"
+        placeholder="Մինչև"
+        value={end}
+        onChange={e => setEnd(e.target.value)}
+        style={inputStyle}
+      />
+      <button style={buttonStyle} onClick={handleSearch}><i className="fa fa-search" aria-hidden="true"></i></button>
+
+      {showPopup && (
+        <Popup cards={filteredCards} onClose={() => setShowPopup(false)} />
+      )}
     </div>
   );
 }
