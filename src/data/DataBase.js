@@ -22,31 +22,5 @@ const cards = [
 ];
 
 export default cards
-export const regions = [
-  { label: 'Դիլիջան', count: 88 },
-  { label: 'Ծաղկաձոր', count: 63 },
-  { label: 'Ձորաղբյուր', count: 17 },
-  { label: 'Երևան', count: 15 },
-  { label: 'Աշտարակ', count: 15 }
-];
 
-export const priceCurrencies = ['֏', '$', '€', '₽'];
 
-export const nightOptions = ['Բոլորը', 'Այո', 'Ոչ'];
-
-export const roomCounts = ['Բոլորը', '1', '2', '3', '4', '5', '6 և ավելի'];
-
-export const bathroomCounts = ['Բոլորը', '1', '2', '3+'];
-
-export const poolOptions = ['Բոլորը', 'Բաց', 'Փակ', 'Տաքացվող', 'Առանց լողավազանի'];
-
-export const features = [
-  'Շոգեբաղնիք',
-  'Ջակուզի',
-  'Բիլիարդ',
-  'Սեղանի թենիս',
-  'Բացօթյա տաղավար',
-  'Փակ տաղավար',
-  'Մանղալ',
-  'Թոնիր'
-];

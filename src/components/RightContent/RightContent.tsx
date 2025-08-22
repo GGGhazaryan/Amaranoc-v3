@@ -21,7 +21,7 @@ export default function RightContent(): React.ReactElement {
         </div>
         {[1, 2, 3, 4, 5, 6].map(i => (
           <div className="rightContentHeader" key={i}>
-            <img className="itemsInHeader" src={`./public/item${i}.png`} alt={`item${i}`} />
+            <img className="itemsInHeader" src={`./item${i}.png`} alt={`item${i}`} />
           </div>
         ))}
         <div style={{ fontSize: "24px", cursor: "pointer", borderBottom: "5px solid #ddd", width: '30px', height: '30px', borderRadius: '50%' }}>
