@@ -4,9 +4,9 @@ import Navigation from './Navigation';
 import HeaderRight from './HeaderRight';
 
 export default function Header(): React.ReactElement {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  
 
   return (
     <header>
@@ -22,16 +22,6 @@ export default function Header(): React.ReactElement {
         <HeaderRight />
       </div>
 
-      <button className="burgerMenuBtn" onClick={toggleMenu} aria-label="Toggle menu">
-        <div></div>
-        <div></div>
-        <div></div>
-      </button>
-
-      <div className={`mobileMenu ${menuOpen ? 'open' : ''}`}>
-        <Navigation />
-        <HeaderRight />
-      </div>
     </header>
   );
 }

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLikedStore } from '../../store'; // adjust path as needed
 
 type CardData = {
   id: number;
@@ -7,7 +8,7 @@ type CardData = {
   price: string;
   location: string;
   people: string;
-  region?: string; // Make sure this is in your card data for filtering
+  region?: string;
 };
 
 type CardProps = {
@@ -15,23 +16,57 @@ type CardProps = {
 };
 
 export default function Card({ card }: CardProps) {
-  if (!card) {
-    return <div>Card data not available</div>;
-  }
-  else{
-    console.log(card); // Check if this array contains duplicates
+  const { likedCards, toggleLike } = useLikedStore();
+  const [loading, setLoading] = useState(true);
 
-  }
-
+  const isLiked = likedCards.some(c => c.title === card.title);
   const titleLength = card.title ? card.title.length : 0;
 
+  // When image loads, wait 1.5s then remove loading state to fade blur and skeleton
+  const handleImageLoad = () => {
+    setTimeout(() => setLoading(false), 1500);
+  };
+
   return (
-    <div >
-      <img src={card.image || ''} alt={card.title || 'No title'} />
-      <h2>{card.title || 'No Title'} ({titleLength} characters)</h2>
-      <p>Price: {card.price || 'N/A'}</p>
-      <p>Location: {card.location || 'N/A'}</p>
-      <p>Capacity: {card.people || 'N/A'}</p>
+    <div className="card">
+      <div className={`cardImage ${loading ? 'skeleton' : ''}`}>
+        <img
+          src={card.image || ''}
+          alt={card.title || 'No Title'}
+          className={loading ? 'blur' : ''}
+          onLoad={handleImageLoad}
+        />
+
+        <button
+          className={`likeButton ${isLiked ? 'liked' : ''}`}
+          onClick={() => toggleLike(card)}
+          aria-label={isLiked ? 'Unlike' : 'Like'}
+          type="button"
+        >
+          <i className="fas fa-heart"></i>
+        </button>
+      </div>
+
+      <div className={`cardInfo ${loading ? 'skeleton' : ''}`}>
+        <h3 className="titleRow">
+          <span className="icon skeleton-icon">
+            <i className="fas fa-map-marker-alt"></i>
+          </span>
+          <span className="locationText skeleton-text">{card.location || 'No Location'}</span>
+
+          <span className="icon peopleIcon skeleton-icon">
+            <i className="fas fa-users"></i>
+          </span>
+          <span className="peopleText skeleton-text">{card.people || 'N/A'}</span>
+        </h3>
+
+        <p>
+          <span className="icon skeleton-icon">
+            <i className="fas fa-dollar-sign"></i>
+          </span>
+          <span className="skeleton-text">{card.price || 'N/A'}</span>
+        </p>
+      </div>
     </div>
   );
 }

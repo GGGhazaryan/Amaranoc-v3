@@ -7,7 +7,7 @@ type RightContentProps = {
 };
 
 export default function RightContent({ selectedRegions = [] }: RightContentProps): React.ReactElement {
-  const [columns, setColumns] = useState(4);
+  const [columns, setColumns] = useState(3);
 
   // Filter cards by selectedRegions, if any selected
   const filteredCards = selectedRegions.length
@@ -20,12 +20,12 @@ export default function RightContent({ selectedRegions = [] }: RightContentProps
 
   // Toggle between 2 and 4 columns
   const handleGrid2Click = () => {
-    setColumns(prev => (prev === 2 ? 4 : 2));
+    setColumns(prev => (prev === 2 ? 3 : 2));
   };
 
   // Toggle between 3 and 4 columns
   const handleGrid3Click = () => {
-    setColumns(prev => (prev === 3 ? 4 : 3));
+    setColumns(prev => (prev === 3 ? 3 : 3));
   };
 
   return (
@@ -103,7 +103,7 @@ export default function RightContent({ selectedRegions = [] }: RightContentProps
           display: 'grid',
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
           width: '100%',
-          gap: '5px',
+          gap: '15px',
         }}
       >
         {filteredCards.map(card => (
