@@ -50,7 +50,7 @@ export default function RegionFilter({ onRegionChange }: RegionFilterProps) {
   return (
     <>
       <h3 className="h3leftcontent">Տարածաշրջան</h3>
-      <div className="checkboxsArray">
+      <div className="checkboxsArray scrollableRegionList">
     {regions.map((region, index) => (
   <label className="customCheckbox" key={region.label}>
     <input

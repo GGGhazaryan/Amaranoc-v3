@@ -22,10 +22,14 @@ export default function StartEndInput() {
   };
 
   const inputStyle: React.CSSProperties = {
-    height: '30px',
-    width: '100px',
+    height: '40px',
+    width: '120px',
     borderRadius: '5px',
-    marginRight:'3px'
+    marginRight:'3px',
+    border:'1px solid gray',
+    opacity:'0.7',
+    textAlign:'center'
+
     
   };
 
@@ -35,6 +39,9 @@ export default function StartEndInput() {
     
 
   };
+  const underscoreStyle:React.CSSProperties = {
+    padding:'5px'
+  }
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
@@ -45,6 +52,7 @@ export default function StartEndInput() {
         onChange={e => setStart(e.target.value)}
         style={inputStyle}
       />
+      <p style={underscoreStyle}>-</p>
       <input
         type="text"
         placeholder="Մինչև"

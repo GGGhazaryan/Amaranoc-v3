@@ -157,10 +157,34 @@ header {
     padding: 10px 0;
     background: #fff
 }
+.scrollableRegionList {
+  max-height:110px; /* или сколько тебе нужно */
+  overflow-y: auto;
+  padding-right: 5px;
+}
+.scrollableRegionList::-webkit-scrollbar {
+  width: 4px; /* Маленькая ширина */
+}
+
+.scrollableRegionList::-webkit-scrollbar-thumb {
+  background-color: #333; /* Чёрный (тёмно-серый, чтобы не терялся) */
+  border-radius: 10px;
+}
+
+.scrollableRegionList::-webkit-scrollbar-thumb:hover {
+  background-color: #000; /* При наведении — чёрный */
+}
+
+.scrollableRegionList::-webkit-scrollbar-track {
+  background: transparent; /* Без фона */
+}
 
 .customCheckbox {
+     max-height:70px;
+    overflow: auto;
     display: flex;
     align-items: center;
+   
     cursor: pointer;
     gap: 8px;
     font-size: 16px;
