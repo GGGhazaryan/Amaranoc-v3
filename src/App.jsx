@@ -50,7 +50,7 @@ function App() {
 
             <div className="rightContentWrapper">
               <LeftContent />
-              <RightContent />
+ 
 
             </div>
           </div>

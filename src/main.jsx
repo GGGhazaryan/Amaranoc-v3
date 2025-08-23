@@ -12,11 +12,11 @@ const AppWrapper = () => {
 };
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+
     <BrowserRouter>       {/* ОБЕРНУЛИ В BrowserRouter */}
       <AuthProvider>
         <AppWrapper />
       </AuthProvider>
     </BrowserRouter>
-  </StrictMode>
+
 );

@@ -1,58 +1,37 @@
-import React, { useState } from 'react';
-import { useLikedStore } from '../../store';
+import React from 'react';
 
-type CardProps = {
-  card: {
-    image?: string;
-    title?: string;
-    price?: string;
-    location?: string;
-    people?: string;
-  };
-  startPrice?: string;
-  endPrice?: string;
+type CardData = {
+  id: number;
+  image: string;
+  title: string;
+  price: string;
+  location: string;
+  people: string;
+  region?: string; // Make sure this is in your card data for filtering
 };
 
-export default function Card({ card, startPrice = '', endPrice = '' }: CardProps) {
-  const { likedCards, toggleLike } = useLikedStore();
-  const liked = likedCards.some(c => c.title === card.title);
-  const [loaded, setLoaded] = useState(false);
+type CardProps = {
+  card: CardData;
+};
 
-  const priceString = card.price || '0';
-  const startNum = Number(startPrice.replace(/\D/g, '')) || 0;
-  const endNum = Number(endPrice.replace(/\D/g, '')) || Infinity;
-  const priceNum = Number(priceString.replace(/\D/g, ''));
+export default function Card({ card }: CardProps) {
+  if (!card) {
+    return <div>Card data not available</div>;
+  }
+  else{
+    console.log(card); // Check if this array contains duplicates
 
-  const isVisible = priceNum >= startNum && priceNum <= endNum;
+  }
 
-  if (!isVisible) return null;
+  const titleLength = card.title ? card.title.length : 0;
 
   return (
-    <>
-      {!loaded && <div className="card skeleton"></div>}
-      <div
-        className="card"
-        style={{ backgroundImage: `url(${card.image || ''})`, display: loaded ? 'flex' : 'none' }}
-      >
-        <img src={card.image || ''} alt={card.title || ''} style={{ display: 'none' }} onLoad={() => setLoaded(true)} />
-        <div className="cardInfo">
-          <h3>{card.title}</h3>
-          <p>{card.price}</p>
-          <p>{card.location}</p>
-          <p>{card.people}</p>
-          <i
-            className="fa fa-heart"
-            style={{
-              backgroundColor: liked ? 'red' : 'white',
-              color: liked ? 'white' : 'red',
-              padding: '5px',
-              borderRadius: '50%',
-              cursor: 'pointer'
-            }}
-            onClick={() => toggleLike(card)}
-          ></i>
-        </div>
-      </div>
-    </>
+    <div >
+      <img src={card.image || ''} alt={card.title || 'No title'} />
+      <h2>{card.title || 'No Title'} ({titleLength} characters)</h2>
+      <p>Price: {card.price || 'N/A'}</p>
+      <p>Location: {card.location || 'N/A'}</p>
+      <p>Capacity: {card.people || 'N/A'}</p>
+    </div>
   );
 }

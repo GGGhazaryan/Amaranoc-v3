@@ -2,43 +2,92 @@ import React, { useState } from 'react';
 import cards from '../../data/DataBase';
 import Card from './Card';
 
-export default function RightContent(): React.ReactElement {
+type RightContentProps = {
+  selectedRegions?: string[];  // optional, with default
+};
+
+export default function RightContent({ selectedRegions = [] }: RightContentProps): React.ReactElement {
   const [columns, setColumns] = useState(4);
 
+  // Filter cards by selectedRegions, if any selected
+  const filteredCards = selectedRegions.length
+    ? cards.filter(card =>
+        selectedRegions.some(
+          region => region.trim().toLowerCase() === card.location.trim().toLowerCase()
+        )
+      )
+    : cards;
+
+  // Toggle between 2 and 4 columns
   const handleGrid2Click = () => {
-    setColumns(prev => prev === 2 ? 4 : 2);
+    setColumns(prev => (prev === 2 ? 4 : 2));
   };
 
+  // Toggle between 3 and 4 columns
   const handleGrid3Click = () => {
-    setColumns(prev => prev === 3 ? 4 : 3);
+    setColumns(prev => (prev === 3 ? 4 : 3));
   };
 
   return (
-    <main className="rightContentMain" style={{ marginTop: "5%" }}>
-       <div className="container_forGeneralHeader">
+    <main className="rightContentMain" style={{ marginTop: '5%' }}>
+      <div className="container_forGeneralHeader">
         <div className="map">
-      <img className="mapIcon" src="../../public/map.png" alt="map"/>
+          <img className="mapIcon" src="../../public/map.png" alt="map" />
         </div>
-       </div>
+      </div>
+
       <div className="headersContainer" style={{ alignItems: 'center' }}>
-        <div style={{ fontSize: "24px", cursor: "pointer", borderBottom: "5px solid #ddd", width: '30px', height: '30px', borderRadius: '50%' }}>
-          <i className="fas fa-arrow-left" style={{ fontSize: "24px", cursor: "pointer" }}></i>
+        <div
+          style={{
+            fontSize: '24px',
+            cursor: 'pointer',
+            borderBottom: '5px solid #ddd',
+            width: '30px',
+            height: '30px',
+            borderRadius: '50%',
+          }}
+        >
+          <i className="fas fa-arrow-left" style={{ fontSize: '24px', cursor: 'pointer' }}></i>
         </div>
-       
+
         {[1, 2, 3, 4, 5, 6].map(i => (
           <div className="rightContentHeader" key={i}>
             <img className="itemsInHeader" src={`./item${i}.png`} alt={`item${i}`} />
           </div>
         ))}
-        <div style={{ fontSize: "24px", cursor: "pointer", borderBottom: "5px solid #ddd", width: '30px', height: '30px', borderRadius: '50%' }}>
-          <i className="fas fa-arrow-right" style={{ fontSize: "24px", cursor: "pointer" }}></i>
+
+        <div
+          style={{
+            fontSize: '24px',
+            cursor: 'pointer',
+            borderBottom: '5px solid #ddd',
+            width: '30px',
+            height: '30px',
+            borderRadius: '50%',
+          }}
+        >
+          <i className="fas fa-arrow-right" style={{ fontSize: '24px', cursor: 'pointer' }}></i>
         </div>
-       
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', maxWidth: '1050px', padding: '10px', borderBottom: "2px solid #ddd" }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          maxWidth: '1050px',
+          padding: '10px',
+          borderBottom: '2px solid #ddd',
+        }}
+      >
         <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
+        <div
+          style={{
+            marginLeft: 'auto',
+            display: 'flex',
+            gap: '5px',
+            alignItems: 'center',
+          }}
+        >
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
             <img className="grid2" src="./grid-2.png" alt="grid2icon" />
           </div>
@@ -53,15 +102,13 @@ export default function RightContent(): React.ReactElement {
         style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
-
-          width: '400px !important',
-          gap: '5px'
+          width: '100%',
+          gap: '5px',
         }}
       >
-        {cards.map(card => (
+        {filteredCards.map(card => (
           <Card key={card.id} card={card} />
         ))}
-
       </div>
     </main>
   );
