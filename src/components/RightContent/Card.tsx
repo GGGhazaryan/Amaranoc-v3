@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLikedStore } from '../../store'; // adjust path as needed
+import { useLikedStore } from '../../store'; // Adjust path as needed
 
 type CardData = {
   id: number;
@@ -20,15 +20,15 @@ export default function Card({ card }: CardProps) {
   const [loading, setLoading] = useState(true);
 
   const isLiked = likedCards.some(c => c.title === card.title);
-  const titleLength = card.title ? card.title.length : 0;
 
-  // When image loads, wait 1.5s then remove loading state to fade blur and skeleton
   const handleImageLoad = () => {
+    // Fade out loading effects after delay
     setTimeout(() => setLoading(false), 1500);
   };
 
   return (
     <div className="card">
+      {/* Image with optional blur and skeleton */}
       <div className={`cardImage ${loading ? 'skeleton' : ''}`}>
         <img
           src={card.image || ''}
@@ -37,6 +37,7 @@ export default function Card({ card }: CardProps) {
           onLoad={handleImageLoad}
         />
 
+        {/* Like button */}
         <button
           className={`likeButton ${isLiked ? 'liked' : ''}`}
           onClick={() => toggleLike(card)}
@@ -47,24 +48,33 @@ export default function Card({ card }: CardProps) {
         </button>
       </div>
 
+      {/* Card Info */}
       <div className={`cardInfo ${loading ? 'skeleton' : ''}`}>
+        {/* Top row: Location + People */}
         <h3 className="titleRow">
           <span className="icon skeleton-icon">
             <i className="fas fa-map-marker-alt"></i>
           </span>
-          <span className="locationText skeleton-text">{card.location || 'No Location'}</span>
+          <span className="locationText skeleton-text">
+            {card.location || 'No Location'}
+          </span>
 
           <span className="icon peopleIcon skeleton-icon">
             <i className="fas fa-users"></i>
           </span>
-          <span className="peopleText skeleton-text">{card.people || 'N/A'}</span>
+          <span className="peopleText skeleton-text">
+            {card.people || 'N/A'}
+          </span>
         </h3>
 
+        {/* Price */}
         <p>
           <span className="icon skeleton-icon">
             <i className="fas fa-dollar-sign"></i>
           </span>
-          <span className="skeleton-text">{card.price || 'N/A'}</span>
+          <span className="skeleton-text">
+            {card.price || 'N/A'}
+          </span>
         </p>
       </div>
     </div>

@@ -152,7 +152,12 @@ header {
    font-weight: bold;
     padding-bottom: 10px;
 
+}.priceBtns.selected {
+  background: black;
+  color: white;
+  border-color: black;
 }
+
 
 .checkboxsArray {
     padding: 10px 0;
