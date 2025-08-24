@@ -54,7 +54,7 @@ export default function RightContent({
     <main className="rightContentMain" style={{ marginTop: '5%' }}>
       <div className="container_forGeneralHeader">
         <div className="map">
-          <img className="mapIcon" src="../../public/map.png" alt="map" />
+          <img className="mapIcon" src="../../map.png" alt="map" />
         </div>
       </div>
 
