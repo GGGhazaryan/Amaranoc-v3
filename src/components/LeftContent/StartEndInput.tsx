@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-import cards from '../../data/DataBase';
-import Popup from '../Popup';
 
-export default function StartEndInput() {
+type CardData = {
+  id: number;
+  image?: string;
+  title?: string;
+  price?: string;
+  location?: string;
+  people?: string;
+  region?: string;
+};
+
+type StartEndInputProps = {
+  cards: CardData[];
+  onFilter: (filtered: CardData[]) => void;
+};
+
+export default function StartEndInput({ cards, onFilter }: StartEndInputProps) {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
-  const [filteredCards, setFilteredCards] = useState(cards);
 
   const handleSearch = () => {
+    if (!Array.isArray(cards)) return;
+
     const startNum = Number(start.replace(/\D/g, '')) || 0;
     const endNum = Number(end.replace(/\D/g, '')) || Infinity;
 
@@ -17,31 +30,27 @@ export default function StartEndInput() {
       return priceNum >= startNum && priceNum <= endNum;
     });
 
-    setFilteredCards(filtered);
-    setShowPopup(true);
+    onFilter(filtered);
   };
 
   const inputStyle: React.CSSProperties = {
     height: '40px',
     width: '120px',
     borderRadius: '5px',
-    marginRight:'3px',
-    border:'1px solid gray',
-    opacity:'0.7',
-    textAlign:'center'
-
-    
+    marginRight: '3px',
+    border: '1px solid gray',
+    opacity: '0.7',
+    textAlign: 'center'
   };
 
   const buttonStyle: React.CSSProperties = {
-    padding:'5px',
+    padding: '5px',
     cursor: 'pointer',
-    
-
   };
-  const underscoreStyle:React.CSSProperties = {
-    padding:'5px'
-  }
+
+  const underscoreStyle: React.CSSProperties = {
+    padding: '5px'
+  };
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
@@ -60,11 +69,9 @@ export default function StartEndInput() {
         onChange={e => setEnd(e.target.value)}
         style={inputStyle}
       />
-      <button style={buttonStyle} onClick={handleSearch}><i className="fa fa-search" aria-hidden="true"></i></button>
-
-      {showPopup && (
-        <Popup cards={filteredCards} onClose={() => setShowPopup(false)} />
-      )}
+      <button style={buttonStyle} onClick={handleSearch}>
+        <i className="fa fa-search" aria-hidden="true"></i>
+      </button>
     </div>
   );
 }

@@ -13,9 +13,12 @@ import FeatureFilter from './FeatureFilter';
 
 import RightContent from '../RightContent/RightContent';
 
+import cardsData from '../../data/DataBase';
+
 export default function LeftContent(): React.ReactElement {
   const [loaded, setLoaded] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [filteredCards, setFilteredCards] = useState(cardsData);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 500);
@@ -23,7 +26,6 @@ export default function LeftContent(): React.ReactElement {
   }, []);
 
   const handleRegionChange = (regions: string[]) => {
-    // Only update if regions are different (optional)
     setSelectedRegions(prev => {
       if (JSON.stringify(prev) !== JSON.stringify(regions)) {
         return regions;
@@ -49,7 +51,7 @@ export default function LeftContent(): React.ReactElement {
         <div className="mainLeftContentDiv">
           <RegionFilter onRegionChange={handleRegionChange} />
           <PriceFilter />
-          <StartEndInput />
+          <StartEndInput cards={cardsData} onFilter={setFilteredCards} />
           <PeopleCounter label="Մարդկանց թույլատրելի քանակ" />
           <NightStayFilter />
           <PeopleCounter label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար" />
@@ -60,7 +62,7 @@ export default function LeftContent(): React.ReactElement {
         </div>
       </aside>
 
-      <RightContent selectedRegions={selectedRegions} />
+      <RightContent cards={filteredCards} selectedRegions={selectedRegions} />
     </>
   );
 }
