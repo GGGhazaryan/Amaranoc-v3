@@ -30,9 +30,7 @@ function App() {
     return () => unsubscribe();
   }, [navigate]);
 
-  if (loading) {
-    return <div style={{ textAlign: 'center' }}>Loading...</div>;
-  }
+
 
   if (!user) {
 

@@ -68,10 +68,9 @@ export default function StartEndInput({ cards, onFilter }: StartEndInputProps) {
         value={end}
         onChange={e => setEnd(e.target.value)}
         style={inputStyle}
+        onClick={handleSearch}
       />
-      <button style={buttonStyle} onClick={handleSearch}>
-        <i className="fa fa-search" aria-hidden="true"></i>
-      </button>
+  
     </div>
   );
 }

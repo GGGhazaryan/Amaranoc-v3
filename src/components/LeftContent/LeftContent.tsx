@@ -18,12 +18,30 @@ import cardsData from '../../data/DataBase';
 export default function LeftContent(): React.ReactElement {
   const [loaded, setLoaded] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [peopleCount, setPeopleCount] = useState(1);
   const [filteredCards, setFilteredCards] = useState(cardsData);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Filter cards whenever selectedRegions or peopleCount changes
+  useEffect(() => {
+    const filtered = cardsData.filter(card => {
+      const cardLocation = card.location?.trim().toLowerCase() || '';
+      const regionMatch =
+        selectedRegions.length === 0 ||
+        selectedRegions.some(region => region.trim().toLowerCase() === cardLocation);
+
+      const cardPeopleNum = Number(card.people) || 0;
+      const peopleMatch = cardPeopleNum >= peopleCount;
+
+      return regionMatch && peopleMatch;
+    });
+
+    setFilteredCards(filtered);
+  }, [selectedRegions, peopleCount]);
 
   const handleRegionChange = (regions: string[]) => {
     setSelectedRegions(prev => {
@@ -52,9 +70,14 @@ export default function LeftContent(): React.ReactElement {
           <RegionFilter onRegionChange={handleRegionChange} />
           <PriceFilter />
           <StartEndInput cards={cardsData} onFilter={setFilteredCards} />
-          <PeopleCounter label="Մարդկանց թույլատրելի քանակ" />
+          <PeopleCounter
+            label="Մարդկանց թույլատրելի քանակ"
+            min={1}
+            max={20}
+            onChange={setPeopleCount}
+          />
           <NightStayFilter />
-          <PeopleCounter label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար" />
+          <PeopleCounter label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար" min={1} max={20} onChange={() => {}} />
           <RoomFilter />
           <BathroomFilter />
           <PoolFilter />

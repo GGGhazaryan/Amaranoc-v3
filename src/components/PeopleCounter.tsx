@@ -1,38 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 type PeopleCounterProps = {
-  label?: string;
+  label: string;
   min?: number;
   max?: number;
+  onChange: (count: number) => void;
+  initialValue?: number;
 };
 
 export default function PeopleCounter({
   label,
   min = 1,
-  max = 99,
-}: PeopleCounterProps): React.ReactElement {
-  const [count, setCount] = useState<number>(min);
+  max = 20,
+  onChange,
+  initialValue = 1,
+}: PeopleCounterProps) {
+  const [count, setCount] = React.useState(initialValue);
 
-  const increase = () => {
-    setCount(prev => (prev < max ? prev + 1 : prev));
+  const increment = () => {
+    if (count < max) {
+      const newCount = count + 1;
+      setCount(newCount);
+      onChange(newCount);
+    }
   };
 
-  const decrease = () => {
-    setCount(prev => (prev > min ? prev - 1 : prev));
+  const decrement = () => {
+    if (count > min) {
+      const newCount = count - 1;
+      setCount(newCount);
+      onChange(newCount);
+    }
   };
 
   return (
-    <div className="peopleCount">
-      {label && <div className="h3second">{label}</div>}
-      <div className="peopleCounter">
-        <button className="minusBtn countBtn" onClick={decrease}>-</button>
-        <input
-          type="number"
-          className="peoplecountInput"
-          value={count}
-          readOnly
-        />
-        <button className="plusBtn countBtn" onClick={increase}>+</button>
+    <div style={{ margin: '10px 0' }}>
+      <label style={{ display: 'block', marginBottom: '6px' }}>{label}</label>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <button className="countBtn" onClick={decrement} disabled={count <= min}>
+          -
+        </button>
+        <input  type="number"
+        className="peoplecountInput"
+         value={count}/>
+        <button className="countBtn" onClick={increment} disabled={count >= max}>
+          +
+        </button>
+
       </div>
     </div>
   );

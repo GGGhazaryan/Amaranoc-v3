@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import cards from '../../data/DataBase';
 import Card from './Card';
 
 type CardData = {
@@ -14,17 +13,33 @@ type CardData = {
 
 type RightContentProps = {
   selectedRegions?: string[];
+  priceRange?: {
+    start: number;
+    end: number;
+  };
   cards: CardData[];
 };
 
-export default function RightContent({ selectedRegions = [], cards }: RightContentProps): React.ReactElement {
+export default function RightContent({
+  selectedRegions = [],
+  priceRange,
+  cards,
+}: RightContentProps): React.ReactElement {
   const [columns, setColumns] = useState(3);
 
+  const startPrice = priceRange?.start ?? 0;
+  const endPrice = priceRange?.end ?? Infinity;
+
+  // Filter cards again by price and region if needed
   const filteredCards = cards.filter(card => {
     const cardLocation = card.location?.trim().toLowerCase() || '';
     const regionMatch =
       selectedRegions.length === 0 || selectedRegions.some(region => region.trim().toLowerCase() === cardLocation);
-    return regionMatch;
+
+    const priceNum = Number((card.price || '0').replace(/\D/g, ''));
+    const priceMatch = priceNum >= startPrice && priceNum <= endPrice;
+
+    return regionMatch && priceMatch;
   });
 
   const handleGrid2Click = () => {
@@ -32,7 +47,7 @@ export default function RightContent({ selectedRegions = [], cards }: RightConte
   };
 
   const handleGrid3Click = () => {
-    setColumns(prev => (prev === 3 ? 3 : 3));
+    setColumns(3); // always 3 on this click as per original code
   };
 
   return (
@@ -104,25 +119,23 @@ export default function RightContent({ selectedRegions = [], cards }: RightConte
         </div>
       </div>
 
-      {filteredCards.length === 0 ? (
-        <div style={{ padding: '40px', textAlign: 'center', color: '#666', fontSize: 18 }}>
-         Ընտրված պարամետրերի համար առաջարկներ չկան
-        </div>
-      ) : (
-        <div
-          className="rightContentWrapper"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${columns}, 1fr)`,
-            width: '100%',
-            gap: '15px',
-          }}
-        >
-          {filteredCards.map(card => (
-            <Card key={card.id} card={card} />
-          ))}
-        </div>
-      )}
+      <div
+        className="rightContentWrapper"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${columns}, 1fr)`,
+          width: '100%',
+          gap: '15px',
+        }}
+      >
+        {filteredCards.length === 0 ? (
+          <div style={{ padding: '40px', textAlign: 'center', color: '#666', fontSize: 18 }}>
+            Ընտրված պարամետրերի համար առաջարկներ չկան
+          </div>
+        ) : (
+          filteredCards.map(card => <Card key={card.id} card={card} />)
+        )}
+      </div>
     </main>
   );
 }
