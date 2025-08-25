@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 type CardData = {
   id: number;
@@ -19,9 +19,7 @@ export default function StartEndInput({ cards, onFilter }: StartEndInputProps) {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
 
-  const handleSearch = () => {
-    if (!Array.isArray(cards)) return;
-
+  useEffect(() => {
     const startNum = Number(start.replace(/\D/g, '')) || 0;
     const endNum = Number(end.replace(/\D/g, '')) || Infinity;
 
@@ -31,7 +29,7 @@ export default function StartEndInput({ cards, onFilter }: StartEndInputProps) {
     });
 
     onFilter(filtered);
-  };
+  }, [start, end, cards, onFilter]);
 
   const inputStyle: React.CSSProperties = {
     height: '40px',
@@ -39,13 +37,8 @@ export default function StartEndInput({ cards, onFilter }: StartEndInputProps) {
     borderRadius: '5px',
     marginRight: '3px',
     border: '1px solid gray',
-    opacity: '0.7',
+    opacity: 0.7,
     textAlign: 'center'
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    padding: '5px',
-    cursor: 'pointer',
   };
 
   const underscoreStyle: React.CSSProperties = {
@@ -68,9 +61,7 @@ export default function StartEndInput({ cards, onFilter }: StartEndInputProps) {
         value={end}
         onChange={e => setEnd(e.target.value)}
         style={inputStyle}
-        onClick={handleSearch}
       />
-  
     </div>
   );
 }

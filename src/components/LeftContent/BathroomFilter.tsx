@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-export default function BathroomFilter(): React.ReactElement {
+type BathroomFilterProps = {
+  selectedBathroomCount: string;
+  onBathroomCountChange: (count: string) => void;
+};
+
+export default function BathroomFilter({
+  selectedBathroomCount,
+  onBathroomCountChange,
+}: BathroomFilterProps): React.ReactElement {
   const [bathroomCounts, setBathroomCounts] = useState<string[]>([]);
 
   useEffect(() => {
@@ -20,12 +28,26 @@ export default function BathroomFilter(): React.ReactElement {
     fetchBathroomCounts();
   }, []);
 
+  useEffect(() => {
+    if (bathroomCounts.length > 0 && !selectedBathroomCount) {
+      onBathroomCountChange(bathroomCounts[0]);
+    }
+  }, [bathroomCounts, selectedBathroomCount, onBathroomCountChange]);
+
   return (
     <div className="bathroomCount">
       <label className="sectionLabel">Սանհանգույցների քանակ</label>
       <div className="bathroomBtns">
         {bathroomCounts.map((count, index) => (
-          <button key={index} className={count === 'Բոլորը' ? 'allBtn' : 'bathroomBtn'}>
+          <button
+            key={index}
+            className={count === 'Բոլորը' ? 'allBtn' : 'bathroomBtn'}
+            onClick={() => onBathroomCountChange(count)}
+            style={{
+              backgroundColor: selectedBathroomCount === count ? 'black' : '',
+              color: selectedBathroomCount === count ? 'white' : '',
+            }}
+          >
             {count}
           </button>
         ))}

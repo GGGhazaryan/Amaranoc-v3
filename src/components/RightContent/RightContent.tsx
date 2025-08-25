@@ -18,20 +18,33 @@ type RightContentProps = {
     end: number;
   };
   cards: CardData[];
+  selectedCurrency: string;
+  baseCurrency: string;
+  selectedNightStay: string;
 };
 
 export default function RightContent({
   selectedRegions = [],
   priceRange,
   cards,
+  selectedCurrency,
+  baseCurrency,
+  selectedNightStay,
 }: RightContentProps): React.ReactElement {
   const [columns, setColumns] = useState(3);
 
   const startPrice = priceRange?.start ?? 0;
   const endPrice = priceRange?.end ?? Infinity;
 
-  // Filter cards again by price and region if needed
-  const filteredCards = cards.filter(card => {
+  const halfIndex = Math.floor(cards.length / 2);
+  const cardsToShow =
+    selectedNightStay === 'Այո'
+      ? cards.slice(0, halfIndex)
+      : selectedNightStay === 'Ոչ'
+      ? cards.slice(halfIndex)
+      : cards;
+
+  const filteredCards = cardsToShow.filter(card => {
     const cardLocation = card.location?.trim().toLowerCase() || '';
     const regionMatch =
       selectedRegions.length === 0 || selectedRegions.some(region => region.trim().toLowerCase() === cardLocation);
@@ -47,14 +60,14 @@ export default function RightContent({
   };
 
   const handleGrid3Click = () => {
-    setColumns(3); // always 3 on this click as per original code
+    setColumns(3);
   };
 
   return (
     <main className="rightContentMain" style={{ marginTop: '5%' }}>
       <div className="container_forGeneralHeader">
         <div className="map">
-          <img className="mapIcon" src="../../map.png" alt="map" />
+          <img className="mapIcon" src="../map.png" alt="map" />
         </div>
       </div>
 
@@ -129,11 +142,11 @@ export default function RightContent({
         }}
       >
         {filteredCards.length === 0 ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#666', fontSize: 18 }}>
+          <div style={{ width: 'max-content', textAlign: 'center', color: '#666', fontSize: 18 }}>
             Ընտրված պարամետրերի համար առաջարկներ չկան
           </div>
         ) : (
-          filteredCards.map(card => <Card key={card.id} card={card} />)
+          filteredCards.map(card => <Card key={card.id} card={card} selectedCurrency={selectedCurrency} baseCurrency={baseCurrency} />)
         )}
       </div>
     </main>

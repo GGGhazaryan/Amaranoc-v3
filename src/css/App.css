@@ -137,13 +137,15 @@ header {
     height: max-content;
     border: 0.1px solid rgb(172, 169, 169);
     border-radius: 15px;
+    margin-left:10%;
 
-    padding: 10px;
+    padding: 12px;
     background: #fff
 }
 
 .mainLeftContentDiv {
     width: 100%;
+    
 
 }
 
@@ -744,7 +746,9 @@ header {
     cursor: pointer;
     border-bottom: 2px solid #c4c2c2;
 }
-
+.mapIcon{
+    margin-left:6%;
+}
 .mapIcon:hover {
     opacity: 0.8;
     cursor: pointer;

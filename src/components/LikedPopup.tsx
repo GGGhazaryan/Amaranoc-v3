@@ -6,12 +6,12 @@ export default function LikedPopup(): React.ReactElement {
   const { likedCards, removeFromLiked } = useLikedStore();
 
   if (likedCards.length === 0) {
-    return <div className="popup" style={{ textAlign: 'center' }}>No liked products!</div>;
+    return <div className="popup" style={{ textAlign: 'center' }}>No liked posts!</div>;
   }
 
   return (
     <div className="popup">
-      <h3>Likes</h3>
+      <h3>Liked Posts</h3>
       {likedCards.map((card, index) => (
         <div key={index} className="cardPopup">
           <img src={card.image} alt={card.title} />
@@ -27,7 +27,7 @@ export default function LikedPopup(): React.ReactElement {
             title="Remove from liked"
             style={{marginLeft:'40px' ,fontSize:'20px'}}
           >
-            🗑️
+            <i className="fa fa-trash" style={{border:'none !important'}} aria-hidden="true"></i>
           </button>
         </div>
       ))}

@@ -20,13 +20,17 @@ export default function LeftContent(): React.ReactElement {
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [peopleCount, setPeopleCount] = useState(1);
   const [filteredCards, setFilteredCards] = useState(cardsData);
+  const [selectedNightStay, setSelectedNightStay] = useState('');
+  const [selectedCurrency, setSelectedCurrency] = useState('֏');
+  
+  const baseCurrency = '֏';
+  const [selectedBathroomCount, setSelectedBathroomCount] = useState('Բոլորը');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Filter cards whenever selectedRegions or peopleCount changes
   useEffect(() => {
     const filtered = cardsData.filter(card => {
       const cardLocation = card.location?.trim().toLowerCase() || '';
@@ -65,10 +69,15 @@ export default function LeftContent(): React.ReactElement {
 
   return (
     <>
+    <div className="father">
       <aside className="container" style={{ marginTop: '19%', height: 'max-content' }}>
         <div className="mainLeftContentDiv">
           <RegionFilter onRegionChange={handleRegionChange} />
-          <PriceFilter />
+         <PriceFilter
+  selectedCurrency={selectedCurrency}
+  setSelectedCurrency={setSelectedCurrency}
+/>
+
           <StartEndInput cards={cardsData} onFilter={setFilteredCards} />
           <PeopleCounter
             label="Մարդկանց թույլատրելի քանակ"
@@ -76,16 +85,28 @@ export default function LeftContent(): React.ReactElement {
             max={20}
             onChange={setPeopleCount}
           />
-          <NightStayFilter />
-          <PeopleCounter label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար" min={1} max={20} onChange={() => {}} />
+          <NightStayFilter
+            selectedNightStay={selectedNightStay}
+            onChange={setSelectedNightStay}
+          />
+          <PeopleCounter label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար" min={1} max={20} onChange={() => { }} />
           <RoomFilter />
-          <BathroomFilter />
+          <BathroomFilter
+            selectedBathroomCount={selectedBathroomCount}
+            onBathroomCountChange={setSelectedBathroomCount}
+          />
           <PoolFilter />
           <FeatureFilter />
         </div>
       </aside>
-
-      <RightContent cards={filteredCards} selectedRegions={selectedRegions} />
+</div>
+      <RightContent
+        cards={filteredCards}
+        selectedRegions={selectedRegions}
+        selectedNightStay={selectedNightStay}
+        selectedCurrency={selectedCurrency}
+        baseCurrency={baseCurrency}
+      />
     </>
   );
 }

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-export default function NightStayFilter(): React.ReactElement {
+type NightStayFilterProps = {
+  selectedNightStay: string;
+  onChange: (value: string) => void;
+};
+
+export default function NightStayFilter({ selectedNightStay, onChange }: NightStayFilterProps): React.ReactElement {
   const [nightOptions, setNightOptions] = useState<string[]>([]);
 
   useEffect(() => {
@@ -20,6 +25,13 @@ export default function NightStayFilter(): React.ReactElement {
     fetchNightOptions();
   }, []);
 
+  // Set default selection if empty
+  useEffect(() => {
+    if (nightOptions.length > 0 && !selectedNightStay) {
+      onChange(nightOptions[0]);
+    }
+  }, [nightOptions, selectedNightStay, onChange]);
+
   return (
     <div className="nightAvalable">
       <h3 className="h3third">Գիշերակացի առկայություն</h3>
@@ -27,10 +39,15 @@ export default function NightStayFilter(): React.ReactElement {
         {nightOptions.map((option, index) => (
           <button
             key={index}
+            onClick={() => onChange(option)}
+            style={{
+              backgroundColor: selectedNightStay === option ? 'black' : '',
+              color: selectedNightStay === option ? 'white' : ''
+            }}
             className={
               option === 'Ոչ' ? 'noBtn' :
               option === 'Այո' ? 'yesBtn' :
-              'allBtn'
+              'yesBtn'
             }
           >
             {option}

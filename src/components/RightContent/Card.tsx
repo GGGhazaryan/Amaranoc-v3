@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLikedStore } from '../../store'; // Adjust path as needed
+import { useLikedStore } from '../../store';
 
 type CardData = {
   id: number;
@@ -13,22 +13,38 @@ type CardData = {
 
 type CardProps = {
   card: CardData;
+  selectedCurrency: string;
+  baseCurrency: string;
 };
 
-export default function Card({ card }: CardProps) {
+const rates = {
+  '֏': 1,
+  '$': 0.0026,
+  '€': 0.0024,
+  '₽': 0.18,
+};
+
+function convertPrice(priceStr: string, fromCurrency: string, toCurrency: string): string {
+  const priceNum = Number(priceStr.replace(/\D/g, '')) || 0;
+  if (!rates[fromCurrency] || !rates[toCurrency]) return priceStr;
+  const converted = (priceNum / rates[fromCurrency]) * rates[toCurrency];
+  return `${converted.toFixed(2)} ${toCurrency}`;
+}
+
+export default function Card({ card, selectedCurrency, baseCurrency }: CardProps) {
   const { likedCards, toggleLike } = useLikedStore();
   const [loading, setLoading] = useState(true);
 
   const isLiked = likedCards.some(c => c.title === card.title);
 
   const handleImageLoad = () => {
-    // Fade out loading effects after delay
     setTimeout(() => setLoading(false), 1500);
   };
 
+  const convertedPrice = convertPrice(card.price || '0', baseCurrency, selectedCurrency);
+
   return (
     <div className="card">
-      {/* Image with optional blur and skeleton */}
       <div className={`cardImage ${loading ? 'skeleton' : ''}`}>
         <img
           src={card.image || ''}
@@ -36,8 +52,6 @@ export default function Card({ card }: CardProps) {
           className={loading ? 'blur' : ''}
           onLoad={handleImageLoad}
         />
-
-        {/* Like button */}
         <button
           className={`likeButton ${isLiked ? 'liked' : ''}`}
           onClick={() => toggleLike(card)}
@@ -47,34 +61,22 @@ export default function Card({ card }: CardProps) {
           <i className="fas fa-heart"></i>
         </button>
       </div>
-
-      {/* Card Info */}
       <div className={`cardInfo ${loading ? 'skeleton' : ''}`}>
-        {/* Top row: Location + People */}
         <h3 className="titleRow">
           <span className="icon skeleton-icon">
             <i className="fas fa-map-marker-alt"></i>
           </span>
-          <span className="locationText skeleton-text">
-            {card.location || 'No Location'}
-          </span>
-
+          <span className="locationText skeleton-text">{card.location || 'No Location'}</span>
           <span className="icon peopleIcon skeleton-icon">
             <i className="fas fa-users"></i>
           </span>
-          <span className="peopleText skeleton-text">
-            {card.people || 'N/A'}
-          </span>
+          <span className="peopleText skeleton-text">{card.people || 'N/A'}</span>
         </h3>
-
-        {/* Price */}
         <p>
           <span className="icon skeleton-icon">
             <i className="fas fa-dollar-sign"></i>
           </span>
-          <span className="skeleton-text">
-            {card.price || 'N/A'}
-          </span>
+          <span className="skeleton-text">{convertedPrice}</span>
         </p>
       </div>
     </div>

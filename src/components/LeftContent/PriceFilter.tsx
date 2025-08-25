@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 
-export default function PriceFilter() {
+type PriceFilterProps = {
+  selectedCurrency: string;
+  setSelectedCurrency: (currency: string) => void;
+};
+
+export default function PriceFilter({ selectedCurrency, setSelectedCurrency }: PriceFilterProps) {
   const [priceCurrencies, setPriceCurrencies] = useState<string[]>([]);
-  const [selectedCurrency, setSelectedCurrency] = useState<string>('');
 
   useEffect(() => {
     const fetchCurrencies = async () => {
@@ -13,14 +17,14 @@ export default function PriceFilter() {
         if (!response.ok) throw new Error('Failed to fetch priceCurrencies');
         const data = await response.json();
         setPriceCurrencies(data);
-        if (data.length > 0) setSelectedCurrency(data[0]);
+        if (data.length > 0 && !selectedCurrency) setSelectedCurrency(data[0]);
       } catch (error) {
         console.error('Error fetching priceCurrencies:', error);
       }
     };
 
     fetchCurrencies();
-  }, []);
+  }, [selectedCurrency, setSelectedCurrency]);
 
   return (
     <div className="priceRow">
