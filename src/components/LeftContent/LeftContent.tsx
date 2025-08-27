@@ -22,15 +22,20 @@ export default function LeftContent(): React.ReactElement {
   const [filteredCards, setFilteredCards] = useState(cardsData);
   const [selectedNightStay, setSelectedNightStay] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState('֏');
-  
-  const baseCurrency = '֏';
+  const [selectedRoomCount, setSelectedRoomCount] = useState('Բոլորը');
   const [selectedBathroomCount, setSelectedBathroomCount] = useState('Բոլորը');
+
+  // 🔧 Добавили priceRange
+  const [priceRange, setPriceRange] = useState({ start: 0, end: Infinity });
+
+  const baseCurrency = '֏';
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
+  // 🔄 Фильтрация по регионам и людям
   useEffect(() => {
     const filtered = cardsData.filter(card => {
       const cardLocation = card.location?.trim().toLowerCase() || '';
@@ -69,43 +74,64 @@ export default function LeftContent(): React.ReactElement {
 
   return (
     <>
-    <div className="father">
-      <aside className="container" style={{ marginTop: '19%', height: 'max-content' }}>
-        <div className="mainLeftContentDiv">
-          <RegionFilter onRegionChange={handleRegionChange} />
-         <PriceFilter
-  selectedCurrency={selectedCurrency}
-  setSelectedCurrency={setSelectedCurrency}
-/>
+      <div className="father">
+        <aside className="container" style={{ marginTop: '19%', height: 'max-content' }}>
+          <div className="mainLeftContentDiv">
+            <RegionFilter onRegionChange={handleRegionChange} />
 
-          <StartEndInput cards={cardsData} onFilter={setFilteredCards} />
-          <PeopleCounter
-            label="Մարդկանց թույլատրելի քանակ"
-            min={1}
-            max={20}
-            onChange={setPeopleCount}
-          />
-          <NightStayFilter
-            selectedNightStay={selectedNightStay}
-            onChange={setSelectedNightStay}
-          />
-          <PeopleCounter label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար" min={1} max={20} onChange={() => { }} />
-          <RoomFilter />
-          <BathroomFilter
-            selectedBathroomCount={selectedBathroomCount}
-            onBathroomCountChange={setSelectedBathroomCount}
-          />
-          <PoolFilter />
-          <FeatureFilter />
-        </div>
-      </aside>
-</div>
+            <PriceFilter
+              selectedCurrency={selectedCurrency}
+              setSelectedCurrency={setSelectedCurrency}
+              priceRange={priceRange}
+              onPriceRangeChange={setPriceRange}
+            />
+
+            <StartEndInput cards={cardsData} onFilter={setFilteredCards} />
+
+            <PeopleCounter
+              label="Մարդկանց թույլատրելի քանակ"
+              min={1}
+              max={20}
+              onChange={setPeopleCount}
+            />
+
+            <NightStayFilter
+              selectedNightStay={selectedNightStay}
+              onChange={setSelectedNightStay}
+            />
+
+            <PeopleCounter
+              label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար"
+              min={1}
+              max={20}
+              onChange={() => { }} // Можно удалить, если не используется
+            />
+
+            <RoomFilter
+              selectedRoomCount={selectedRoomCount}
+              onChange={setSelectedRoomCount}
+            />
+
+            <BathroomFilter
+              selectedBathroomCount={selectedBathroomCount}
+              onBathroomCountChange={setSelectedBathroomCount}
+            />
+
+            <PoolFilter />
+            <FeatureFilter />
+          </div>
+        </aside>
+      </div>
+
       <RightContent
-        cards={filteredCards}
         selectedRegions={selectedRegions}
-        selectedNightStay={selectedNightStay}
+        priceRange={priceRange}
+        cards={filteredCards}
         selectedCurrency={selectedCurrency}
         baseCurrency={baseCurrency}
+        selectedNightStay={selectedNightStay}
+        selectedRoomCount={selectedRoomCount}
+        selectedBathroomCount={selectedBathroomCount}
       />
     </>
   );

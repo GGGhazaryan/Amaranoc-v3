@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 
-export default function RoomFilter() {
+type Props = {
+  selectedRoomCount: string;
+  onChange: (value: string) => void;
+};
+
+export default function RoomFilter({ selectedRoomCount, onChange }: Props) {
   const [roomCounts, setRoomCounts] = useState<string[]>([]);
-  const [selectedRoomCount, setSelectedRoomCount] = useState<string>('');
 
   useEffect(() => {
     const fetchRoomCounts = async () => {
@@ -21,12 +25,11 @@ export default function RoomFilter() {
     fetchRoomCounts();
   }, []);
 
-  // Устанавливаем первый элемент по умолчанию, если есть данные и ничего не выбрано
   useEffect(() => {
     if (roomCounts.length > 0 && selectedRoomCount === '') {
-      setSelectedRoomCount(roomCounts[0]);
+      onChange(roomCounts[0]);
     }
-  }, [roomCounts, selectedRoomCount]);
+  }, [roomCounts, selectedRoomCount, onChange]);
 
   return (
     <div className="roomsCount">
@@ -35,11 +38,13 @@ export default function RoomFilter() {
         {roomCounts.map((count, index) => (
           <button
             key={index}
-            onClick={() => setSelectedRoomCount(count)}
+            onClick={() => onChange(count)}
             className={
-              count === 'Բոլորը' ? 'yesBtn' :
-              count === '6 և ավելի' ? 'roomBtn roomBtn6' :
-              'roomBtn'
+              count === 'Բոլորը'
+                ? 'yesBtn'
+                : count === '6 և ավելի'
+                ? 'roomBtn roomBtn6'
+                : 'roomBtn'
             }
             style={{
               backgroundColor: selectedRoomCount === count ? 'black' : '',
