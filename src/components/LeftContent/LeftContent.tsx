@@ -99,13 +99,13 @@ export default function LeftContent(): React.ReactElement {
               selectedNightStay={selectedNightStay}
               onChange={setSelectedNightStay}
             />
-
+{/* 
             <PeopleCounter
               label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար"
               min={1}
               max={20}
-              onChange={() => { }} // Можно удалить, если не используется
-            />
+              onChange={() => { }}
+            /> */}
 
             <RoomFilter
               selectedRoomCount={selectedRoomCount}

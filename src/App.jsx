@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
-import LeftContent from './components/LeftContent/LeftContent';
-import RightContent from './components/RightContent/RightContent';
-import GeneralFooter from './components/GeneralFooter/GeneralFooter';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import Chat from './components/Chat/Chat/Chat';
-import Login from './components/Registration/LoginRegister';
-import './css/App.css';
-import './css/index.css';
+import LeftContent from "./components/LeftContent/LeftContent";
+import RightContent from "./components/RightContent/RightContent";
+import GeneralFooter from "./components/GeneralFooter/GeneralFooter";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Chat from "./components/Chat/Chat/Chat";
+import Login from "./components/Registration/LoginRegister";
+import "./css/App.css";
+import "./css/index.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
@@ -30,29 +30,24 @@ function App() {
     return () => unsubscribe();
   }, [navigate]);
 
-
-
   if (!user) {
-
     return null;
   }
 
   return (
-
     <>
       <Header />
       <Routes>
-        <Route path="/" element={
-
-          <div className="mainContentWrapper">
-
-            <div className="rightContentWrapper">
-              <LeftContent />
- 
-
+        <Route
+          path="/"
+          element={
+            <div className="mainContentWrapper">
+              <div className="rightContentWrapper">
+                <LeftContent />
+              </div>
             </div>
-          </div>
-        } />
+          }
+        />
         <Route path="/chat" element={<Chat />} />
         <Route path="/login" element={<Login />} />
       </Routes>
@@ -60,7 +55,6 @@ function App() {
       <Footer />
     </>
   );
-
 }
 
 export default App;

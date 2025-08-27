@@ -172,7 +172,7 @@ export default function RightContent({
         style={{
           display: 'flex',
           alignItems: 'center',
-          maxWidth: '1050px',
+          maxWidth: '1300px',
           padding: '10px',
           borderBottom: '2px solid #ddd',
         }}
