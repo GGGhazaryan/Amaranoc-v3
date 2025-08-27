@@ -15,6 +15,7 @@ type CardProps = {
   card: CardData;
   selectedCurrency: string;
   baseCurrency: string;
+  largeMode?: boolean; // ✅ Add prop
 };
 
 const rates = {
@@ -31,7 +32,7 @@ function convertPrice(priceStr: string, fromCurrency: string, toCurrency: string
   return `${converted.toFixed(2)} ${toCurrency}`;
 }
 
-export default function Card({ card, selectedCurrency, baseCurrency }: CardProps) {
+export default function Card({ card, selectedCurrency, baseCurrency, largeMode = false }: CardProps) {
   const { likedCards, toggleLike } = useLikedStore();
   const [loading, setLoading] = useState(true);
 
@@ -44,13 +45,19 @@ export default function Card({ card, selectedCurrency, baseCurrency }: CardProps
   const convertedPrice = convertPrice(card.price || '0', baseCurrency, selectedCurrency);
 
   return (
-    <div className="card">
+    <div
+      className={`card ${largeMode ? 'large' : ''}`}
+      style={{
+        transition: 'all 0.3s ease',
+      }}
+    >
       <div className={`cardImage ${loading ? 'skeleton' : ''}`}>
         <img
           src={card.image || ''}
           alt={card.title || 'No Title'}
           className={loading ? 'blur' : ''}
           onLoad={handleImageLoad}
+          style={{ height: largeMode ? '320px' : '260px', objectFit: 'cover' }}
         />
         <button
           className={`likeButton ${isLiked ? 'liked' : ''}`}

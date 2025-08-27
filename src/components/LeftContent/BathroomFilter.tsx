@@ -41,7 +41,7 @@ export default function BathroomFilter({
         {bathroomCounts.map((count, index) => (
           <button
             key={index}
-            className={count === 'Բոլորը' ? 'allBtn' : 'bathroomBtn'}
+            className={count === 'Բոլորը' ? 'yesBtn' : 'bathroomBtn'}
             onClick={() => onBathroomCountChange(count)}
             style={{
               backgroundColor: selectedBathroomCount === count ? 'black' : '',

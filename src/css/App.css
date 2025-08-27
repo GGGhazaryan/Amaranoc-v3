@@ -427,27 +427,34 @@ header {
   margin-left:80px;
   justify-content: center; /* Центрирует всю сетку */
 }
+.rightContentWrapper {
+  display: grid;
+  gap: 40px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;   
+  margin-left:80px;
+  justify-content: center;
+}
 
 .rightContentWrapper > * {
   justify-self: center; /* Центрирует каждый элемент в ячейке */
 }
-
-
 .card {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card:hover {
-    transform: translateY(-8px);
+ transform: translateY(-10px) scale(1.05);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
@@ -502,6 +509,20 @@ header {
     margin-right: 10px;
 }
 
+/* Blur all cards when hovering the container */
+.card:hover {
+  filter: blur(4px);
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+.rightContentWrapper .card:hover {
+  filter: none;
+  transform: translateY(-10px) scale(1.05);
+  opacity: 1;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
 
 .footerContainer {
     background: url('forest.webp') no-repeat center/cover;
@@ -566,8 +587,8 @@ header {
 }
 
 .finalFooter {
-    background-image: url("footer-background.webp");
-    background-color: #1d2048;
+    background-image: url("finalFooter.png");
+    cursor:pointer;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -729,12 +750,32 @@ header {
     font-size: 18px;
     font-weight: 700;
     color: #000;
-     margin-left:50px;
+    margin-left:2%;
     border: none;
     width: auto;
     height: auto;
 }
 
+.headersContainer {
+    display: flex;
+
+    gap: 20px;
+    padding: 10px 0;
+    scroll-behavior: smooth; /* smooth scroll */
+}
+
+.headersContainer::-webkit-scrollbar {
+    height: 6px; /* horizontal scrollbar height */
+}
+
+.headersContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+.headersContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
 
 
 .itemsInHeader {
@@ -746,9 +787,22 @@ header {
     cursor: pointer;
     border-bottom: 2px solid #c4c2c2;
 }
+.card {
+  width: 100%;
+  max-width: 400px; /* default */
+}
+
+.card.large {
+  max-width: 550px; /* for 2-column mode */
+}
+
 .mapIcon{
     margin-left:6%;
 }
+.card.large {
+  max-width: 550px; /* ✅ Bigger width in 2-column mode */
+}
+
 .mapIcon:hover {
     opacity: 0.8;
     cursor: pointer;
