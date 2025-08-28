@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Card from './Card';
+import PopupCalendar from '../PopupCalendar'; // ✅ Исправил ошибку импорта
 
 type CardData = {
   id: number;
@@ -37,6 +38,9 @@ export default function RightContent({
 }: RightContentProps): React.ReactElement {
   const [columns, setColumns] = useState(3);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => setIsPopupOpen(prev => !prev);
 
   const startPrice = priceRange?.start ?? 0;
   const endPrice = priceRange?.end ?? Infinity;
@@ -101,48 +105,45 @@ export default function RightContent({
       <div className="container_forGeneralHeader">
         <div className="map">
           <div className="qartez">Քարտեզ</div>
-          <div className="calendar"><i className="fa fa-calendar" aria-hidden="true"></i></div>
+          <div className="calendar" onClick={togglePopup} style={{ cursor: 'pointer' }}>
+            <i className="fa fa-calendar" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
-      <div
-        className="sliderWrapper"
-        style={{
+
+      {isPopupOpen && <PopupCalendar onClose={togglePopup} />}
+
+      {/* ... Остальная часть компонента (слайдер, сетка и карточки) остаётся без изменений ... */}
+
+      <div className="sliderWrapper" style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        margin: '20px 0',
+        paddingLeft: '40px',
+      }}>
+        <div onClick={scrollLeft} style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: '#f5f5f5',
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
-          margin: '20px 0',
-          paddingLeft: '40px',
-        }}
-      >
-        <div
-          onClick={scrollLeft}
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            backgroundColor: '#f5f5f5',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            cursor: 'pointer',
-            flexShrink: 0,
-          }}
-        >
+          justifyContent: 'center',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+          cursor: 'pointer',
+          flexShrink: 0,
+        }}>
           <i className="fas fa-arrow-left" style={{ fontSize: '18px', color: '#333' }}></i>
         </div>
 
-        <div
-          className="headersContainer"
-          ref={scrollRef}
-          style={{
-            display: 'flex',
-            overflowX: 'auto',
-            scrollBehavior: 'smooth',
-            gap: '20px',
-            padding: '5px 0',
-          }}
-        >
+        <div className="headersContainer" ref={scrollRef} style={{
+          display: 'flex',
+          overflowX: 'auto',
+          scrollBehavior: 'smooth',
+          gap: '20px',
+          padding: '5px 0',
+        }}>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
             <div className="rightContentHeader" key={i}>
               <img className="itemsInHeader" src={`./item${i}.png`} alt={`item${i}`} />
@@ -150,34 +151,29 @@ export default function RightContent({
           ))}
         </div>
 
-        <div
-          onClick={scrollRight}
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            backgroundColor: '#f5f5f5',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            cursor: 'pointer',
-            flexShrink: 0,
-          }}
-        >
+        <div onClick={scrollRight} style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: '#f5f5f5',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+          cursor: 'pointer',
+          flexShrink: 0,
+        }}>
           <i className="fas fa-arrow-right" style={{ fontSize: '18px', color: '#333' }}></i>
         </div>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          maxWidth: '1050px',
-          padding: '10px',
-          borderBottom: '2px solid #ddd',
-        }}
-      >
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: '1050px',
+        padding: '10px',
+        borderBottom: '2px solid #ddd',
+      }}>
         <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
@@ -189,17 +185,14 @@ export default function RightContent({
         </div>
       </div>
 
-      <div
-        className="rightContentWrapper"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          width: '100%',
-          gap: '40px',
-          justifyContent: 'center',
-          marginLeft: '80px',
-        }}
-      >
+      <div className="rightContentWrapper" style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+        width: '100%',
+        gap: '40px',
+        justifyContent: 'center',
+        marginLeft: '80px',
+      }}>
         {bathroomFilteredCards.length === 0 ? (
           <div style={{ width: 'max-content', textAlign: 'center', color: '#666', fontSize: 18 }}>
             Ընտրված պարամետրերի համար առաջարկներ չկան
@@ -219,3 +212,4 @@ export default function RightContent({
     </main>
   );
 }
+  
