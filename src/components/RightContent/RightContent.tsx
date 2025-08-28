@@ -39,7 +39,7 @@ export default function RightContent({
   const [columns, setColumns] = useState(3);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-const [isMapOpen, setIsMapOpen] = useState(false);
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const togglePopup = () => setIsPopupOpen(prev => !prev);
 
   const startPrice = priceRange?.start ?? 0;
@@ -104,8 +104,8 @@ const [isMapOpen, setIsMapOpen] = useState(false);
     <main className="rightContentMain" style={{ marginTop: '5%' }}>
       <div className="container_forGeneralHeader">
         <div className="map">
-           <div className="qartez" onClick={() => setIsMapOpen(true)}>Քարտեզ</div>
-      {isMapOpen && <MapPopup onClose={() => setIsMapOpen(false)} />}
+          <div className="qartez" onClick={() => setIsMapOpen(true)}>Քարտեզ</div>
+          {isMapOpen && <MapPopup onClose={() => setIsMapOpen(false)} />}
           <div className="calendar" onClick={togglePopup} style={{ cursor: 'pointer' }}>
             <i className="fa fa-calendar" aria-hidden="true"></i>
           </div>
@@ -114,7 +114,7 @@ const [isMapOpen, setIsMapOpen] = useState(false);
 
       {isPopupOpen && <PopupCalendar onClose={togglePopup} />}
 
-   
+
 
       <div className="sliderWrapper" style={{
         display: 'flex',
@@ -171,11 +171,11 @@ const [isMapOpen, setIsMapOpen] = useState(false);
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        maxWidth: '1050px',
+        maxWidth: '1300',
         padding: '10px',
         borderBottom: '2px solid #ddd',
       }}>
-        <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
+        <span style={{ fontWeight: 'bold', marginLeft: '5%', opacity: '0.7' }}>Լավագույն առաջարկներ</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
             <img className="grid2" src="./grid-2.png" alt="grid2icon" />
@@ -186,17 +186,17 @@ const [isMapOpen, setIsMapOpen] = useState(false);
         </div>
       </div>
 
-    <div className="rightContentWrapper" style={{
-  display: 'grid',
-  gridTemplateColumns: columns === 2 
-      ? 'repeat(2, minmax(350px, 1fr))'  // 2 большие колонки
-      : 'repeat(3, minmax(250px, 1fr))', // 3 колонки по умолчанию
-  width: '100%',
-  gap: '40px',
-  justifyContent: 'center',
-  marginLeft: '80px',
-  transition: 'all 0.4s ease'
-}}>
+      <div className="rightContentWrapper" style={{
+        display: 'grid',
+        gridTemplateColumns: columns === 2
+          ? 'repeat(2, minmax(350px, 1fr))'
+          : 'repeat(3, minmax(250px, 1fr))',
+        width: '100%',
+        gap: '40px',
+        justifyContent: 'center',
+        marginLeft: '80px',
+        transition: 'all 0.4s ease'
+      }}>
 
         {bathroomFilteredCards.length === 0 ? (
           <div style={{ width: 'max-content', textAlign: 'center', color: '#666', fontSize: 18 }}>
@@ -217,4 +217,3 @@ const [isMapOpen, setIsMapOpen] = useState(false);
     </main>
   );
 }
-  

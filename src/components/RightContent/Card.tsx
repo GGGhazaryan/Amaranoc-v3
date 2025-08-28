@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLikedStore } from '../../store';
+import { useNavigate } from 'react-router-dom';
 
 type CardData = {
   id: number;
@@ -35,6 +36,7 @@ function convertPrice(priceStr: string, fromCurrency: string, toCurrency: string
 export default function Card({ card, selectedCurrency, baseCurrency, largeMode = false }: CardProps) {
   const { likedCards, toggleLike } = useLikedStore();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const isLiked = likedCards.some(c => c.title === card.title);
 
@@ -59,8 +61,8 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
         width: '90%',
         height: largeMode ? '450px' : '380px'
       }}
+      onClick={() => navigate(`/id/${card.id}`)}
     >
-      {/* Image */}
       <div className={`cardImage ${loading ? 'skeleton' : ''}`} style={{ position: 'relative', flexShrink: 0 }}>
         <img
           src={card.image || ''}
@@ -76,14 +78,17 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
         />
         <button
           className={`likeButton ${isLiked ? 'liked' : ''}`}
-          onClick={() => toggleLike(card)}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleLike(card);
+          }}
           aria-label={isLiked ? 'Unlike' : 'Like'}
           type="button"
           style={{
             position: 'absolute',
             top: '10px',
             right: '10px',
-            background: 'rgba(255,255,255,0.9)',
+            background: 'rgba(255,255,255,0.1)',
             border: 'none',
             borderRadius: '50%',
             width: '36px',
@@ -99,10 +104,9 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
           <i className="fas fa-heart" style={{ color: isLiked ? 'red' : '#ccc' }}></i>
         </button>
       </div>
-
-     
-      <div className={`cardInfo ${loading ? 'skeleton' : ''}`} style={{ padding: '8px', flexGrow: 1 }}>
-        <h3 className="titleRow" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '16px', margin: '0 0 10px' }}>
+      <div className={`cardInfo ${loading ? 'skeleton' : ''}`} style={{ padding: '1px', flexGrow: 1 }}>
+      
+        <h3 className="titleRow" style={{ display: 'flex', alignItems: 'center', fontSize: '22px', color:'#333',opacity:'0.7' }}>
           <span className="icon skeleton-icon"><i className="fas fa-map-marker-alt"></i></span>
           <span className="locationText skeleton-text">{card.location || 'No Location'}</span>
           <span className="icon peopleIcon skeleton-icon"><i className="fas fa-users"></i></span>
