@@ -167,6 +167,7 @@ export default function RightContent({
         </div>
       </div>
 
+<<<<<<< HEAD
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -174,6 +175,17 @@ export default function RightContent({
         padding: '10px',
         borderBottom: '2px solid #ddd',
       }}>
+=======
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          maxWidth: '1300px',
+          padding: '10px',
+          borderBottom: '2px solid #ddd',
+        }}
+      >
+>>>>>>> 000f0148f01e303c2d439b25423e8361bfe94e61
         <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
