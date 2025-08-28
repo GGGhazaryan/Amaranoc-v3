@@ -46,8 +46,8 @@ export default function RightContent({
     selectedNightStay === 'Այո'
       ? cards.slice(0, halfIndex)
       : selectedNightStay === 'Ոչ'
-      ? cards.slice(halfIndex)
-      : cards;
+        ? cards.slice(halfIndex)
+        : cards;
 
   const filteredCards = cardsToShow.filter(card => {
     const cardLocation = card.location?.trim().toLowerCase() || '';
@@ -100,7 +100,8 @@ export default function RightContent({
     <main className="rightContentMain" style={{ marginTop: '5%' }}>
       <div className="container_forGeneralHeader">
         <div className="map">
-          <img className="mapIcon" src="../map.png" alt="map" />
+          <div className="qartez">Քարտեզ</div>
+          <div className="calendar"><i className="fa fa-calendar" aria-hidden="true"></i></div>
         </div>
       </div>
       <div

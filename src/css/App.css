@@ -30,7 +30,7 @@ header {
     width: 200px;
     height: 40px;
     cursor: pointer;
-     margin-left:40px;
+    margin-left: 40px;
 }
 
 .allOptions {
@@ -62,8 +62,9 @@ header {
 .option4 {
     width: max-content
 }
-.option1{
-       text-decoration: underline;
+
+.option1 {
+    text-decoration: underline;
     text-decoration-color: #ff9100;
     text-decoration-thickness: 2px;
     text-underline-offset: 7px
@@ -137,7 +138,7 @@ header {
     height: max-content;
     border: 0.1px solid rgb(172, 169, 169);
     border-radius: 15px;
-    margin-left:10%;
+    margin-left: 10%;
 
     padding: 12px;
     background: #fff
@@ -145,19 +146,21 @@ header {
 
 .mainLeftContentDiv {
     width: 100%;
-    
+
 
 }
 
 .h3leftcontent {
     font-size: 16px;
-   font-weight: bold;
+    font-weight: bold;
     padding-bottom: 10px;
 
-}.priceBtns.selected {
-  background: black;
-  color: white;
-  border-color: black;
+}
+
+.priceBtns.selected {
+    background: black;
+    color: white;
+    border-color: black;
 }
 
 
@@ -165,35 +168,42 @@ header {
     padding: 10px 0;
     background: #fff
 }
+
 .scrollableRegionList {
-  max-height:110px; /* или сколько тебе нужно */
-  overflow-y: auto;
-  padding-right: 5px;
+    max-height: 110px;
+    /* или сколько тебе нужно */
+    overflow-y: auto;
+    padding-right: 5px;
 }
+
 .scrollableRegionList::-webkit-scrollbar {
-  width: 4px; /* Маленькая ширина */
-  height:3px;
+    width: 4px;
+    /* Маленькая ширина */
+    height: 3px;
 }
 
 .scrollableRegionList::-webkit-scrollbar-thumb {
-  background-color: #333; /* Чёрный (тёмно-серый, чтобы не терялся) */
-  border-radius: 10px;
+    background-color: #333;
+    /* Чёрный (тёмно-серый, чтобы не терялся) */
+    border-radius: 10px;
 }
 
 .scrollableRegionList::-webkit-scrollbar-thumb:hover {
-  background-color: #000; /* При наведении — чёрный */
+    background-color: #000;
+    /* При наведении — чёрный */
 }
 
 .scrollableRegionList::-webkit-scrollbar-track {
-  background: transparent; /* Без фона */
+    background: transparent;
+    /* Без фона */
 }
 
 .customCheckbox {
-     max-height:70px;
+    max-height: 70px;
     overflow: auto;
     display: flex;
     align-items: center;
-    opacity:0.7;
+    opacity: 0.7;
     cursor: pointer;
     gap: 8px;
     font-size: 16px;
@@ -418,43 +428,48 @@ header {
 }
 
 .rightContentWrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;   
-  margin-left:80px;
-  justify-content: center; /* Центрирует всю сетку */
-}
-.rightContentWrapper {
-  display: grid;
-  gap: 40px;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;   
-  margin-left:80px;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 80px;
+    justify-content: center;
+    /* Центрирует всю сетку */
 }
 
-.rightContentWrapper > * {
-  justify-self: center; /* Центрирует каждый элемент в ячейке */
+.rightContentWrapper {
+    display: grid;
+    gap: 40px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 80px;
+    justify-content: center;
 }
+
+.rightContentWrapper>* {
+    justify-self: center;
+    /* Центрирует каждый элемент в ячейке */
+}
+
 .card {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  background-color: #fff;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .card:hover {
- transform: translateY(-10px) scale(1.05);
+    transform: translateY(-10px) scale(1.05);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
@@ -511,17 +526,17 @@ header {
 
 /* Blur all cards when hovering the container */
 .card:hover {
-  filter: blur(4px);
-  transform: scale(0.95);
-  opacity: 0.7;
+    filter: blur(4px);
+    transform: scale(0.95);
+    opacity: 0.7;
 }
 
 .rightContentWrapper .card:hover {
-  filter: none;
-  transform: translateY(-10px) scale(1.05);
-  opacity: 1;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+    filter: none;
+    transform: translateY(-10px) scale(1.05);
+    opacity: 1;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 .footerContainer {
@@ -588,7 +603,7 @@ header {
 
 .finalFooter {
     background-image: url("finalFooter.png");
-    cursor:pointer;
+    cursor: pointer;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -743,14 +758,14 @@ header {
     background: #fff;
     border-bottom: 2px solid #ddd;
     overflow-x: auto;
-     margin-left:90px;
+    margin-left: 90px;
 }
 
 .rightContentHeader {
     font-size: 18px;
     font-weight: 700;
     color: #000;
-    margin-left:2%;
+    margin-left: 2%;
     border: none;
     width: auto;
     height: auto;
@@ -761,15 +776,17 @@ header {
 
     gap: 20px;
     padding: 10px 0;
-    scroll-behavior: smooth; /* smooth scroll */
+    scroll-behavior: smooth;
+    /* smooth scroll */
 }
 
 .headersContainer::-webkit-scrollbar {
-    height: 6px; /* horizontal scrollbar height */
+    height: 6px;
+    /* horizontal scrollbar height */
 }
 
 .headersContainer::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 3px;
 }
 
@@ -787,26 +804,33 @@ header {
     cursor: pointer;
     border-bottom: 2px solid #c4c2c2;
 }
+
 .card {
-  width: 100%;
-  max-width: 400px; /* default */
+    width: 100%;
+    max-width: 400px;
+    /* default */
 }
 
 .card.large {
-  max-width: 550px; /* for 2-column mode */
+    max-width: 550px;
+    /* for 2-column mode */
 }
 
-.mapIcon{
-    margin-left:6%;
+.mapIcon {
+    margin-left: 6%;
 }
+
 .card.large {
-  max-width: 550px; /* ✅ Bigger width in 2-column mode */
+    max-width: 550px;
+    /* ✅ Bigger width in 2-column mode */
 }
 
 .mapIcon:hover {
     opacity: 0.8;
     cursor: pointer;
-}.card {
+}
+
+.card {
     width: 100%;
     max-width: 500px;
     border-radius: 16px;
@@ -815,7 +839,7 @@ header {
     background-color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    width:350px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -881,6 +905,7 @@ header {
     font-size: 16px;
     pointer-events: none;
 }
+
 .cardInfo {
     padding: 20px;
     background-color: #fff;
@@ -906,12 +931,10 @@ header {
     left: -150px;
     height: 100%;
     width: 150px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
     animation: loadingShimmer 1.5s infinite;
     z-index: 1;
 }
@@ -935,7 +958,37 @@ header {
     0% {
         left: -150px;
     }
+
     100% {
         left: 100%;
     }
+}
+
+.map {
+    display: flex;
+    gap:15px;
+}
+
+.qartez {
+    width: 150px;
+    height: 50px;
+    border: 1px solid #333;
+    border-radius: 50px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 5%;
+    align-items: center;
+}
+
+.calendar {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+   
+    align-items: center;
 }

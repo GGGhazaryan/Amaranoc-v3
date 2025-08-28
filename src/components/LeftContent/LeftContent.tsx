@@ -100,12 +100,7 @@ export default function LeftContent(): React.ReactElement {
               onChange={setSelectedNightStay}
             />
 
-            <PeopleCounter
-              label="Մարդկանց թույլատրելի քանակ Գիշերակացության համար"
-              min={1}
-              max={20}
-              onChange={() => { }} // Можно удалить, если не используется
-            />
+        
 
             <RoomFilter
               selectedRoomCount={selectedRoomCount}
