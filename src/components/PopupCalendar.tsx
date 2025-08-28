@@ -3,57 +3,57 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type PopupCalendarProps = {
-    onClose: () => void;
+  onClose: () => void;
 };
 
 const armenianWeekdaysShort = ['երկ', 'երք', 'չոր', 'հնգ', 'ուրբ', 'շաբ', 'կիր'];
 const armenianMonths = [
-    'ՀՈՒՆՎԱՐ',
-    'ՓԵՏՐՎԱՐ',
-    'ՄԱՐՏ',
-    'ԱՊՐԻԼ',
-    'ՄԱՅԻՍ',
-    'ՀՈՒՆԻՍ',
-    'ՀՈՒԼԻՍ',
-    'ՕԳՈՍՏՈՍ',
-    'ՍԵՊՏԵՄԲԵՐ',
-    'ՀՈԿՏԵՄԲԵՐ',
-    'ՆՈՅԵՄԲԵՐ',
-    'ԴԵԿՏԵՄԲԵՐ',
+  'ՀՈՒՆՎԱՐ',
+  'ՓԵՏՐՎԱՐ',
+  'ՄԱՐՏ',
+  'ԱՊՐԻԼ',
+  'ՄԱՅԻՍ',
+  'ՀՈՒՆԻՍ',
+  'ՀՈՒԼԻՍ',
+  'ՕԳՈՍՏՈՍ',
+  'ՍԵՊՏԵՄԲԵՐ',
+  'ՀՈԿՏԵՄԲԵՐ',
+  'ՆՈՅԵՄԲԵՐ',
+  'ԴԵԿՏԵՄԲԵՐ',
 ];
 
 const PopupCalendar: React.FC<PopupCalendarProps> = ({ onClose }) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
-    const currentMonthName = selectedDate ? armenianMonths[selectedDate.getMonth()] : '';
+  const currentMonthName = selectedDate ? armenianMonths[selectedDate.getMonth()] : '';
 
-    return (
-        <div className="popup-overlay" onClick={onClose}>
-            <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}>✖</button>
-                <p className="subtitle">Նշեք Ձեր ցանկալի օրերը</p>
-                <div className="mouthtitlebackgound">
-                    <h1 className="month-title">{currentMonthName}</h1>
-                </div>
+  return (
+    <div className="popup-overlay" onClick={onClose}>
+      <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+        <button className="close-button" onClick={onClose}>✖</button>
+        <p className="subtitle">Նշեք Ձեր ցանկալի օրերը</p>
+        <div className="mouthtitlebackgound">
+          <h1 className="month-title">{currentMonthName}</h1>
+        </div>
 
-                <div className="weekdays">
-                    {armenianWeekdaysShort.map((day, index) => (
-                        <span key={index}>{day}</span>
-                    ))}
-                </div>
-                <div className="datepicker-wrapper">
-                    <DatePicker
-                        selected={selectedDate}
-                        onChange={(date) => setSelectedDate(date)}
-                        inline
-                        renderCustomHeader={() => null}
-                        formatWeekDay={(nameOfDay) => {
-                            const dayIndex = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].indexOf(nameOfDay);
-                            return armenianWeekdaysShort[dayIndex] || '';
-                        }}
-                    />
-                </div>
-                <style jsx>{`
+        <div className="weekdays">
+          {armenianWeekdaysShort.map((day, index) => (
+            <span key={index}>{day}</span>
+          ))}
+        </div>
+        <div className="datepicker-wrapper">
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            inline
+            renderCustomHeader={() => null}
+            formatWeekDay={(nameOfDay) => {
+              const dayIndex = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].indexOf(nameOfDay);
+              return armenianWeekdaysShort[dayIndex] || '';
+            }}
+          />
+        </div>
+        <style jsx>{`
           .popup-overlay {
             position: fixed;
             top: 0;
@@ -109,7 +109,7 @@ const PopupCalendar: React.FC<PopupCalendarProps> = ({ onClose }) => {
 
           .month-title {
             font-size: 25ыpx;
-            color: white;
+            color: #FF6B00;
                   
             margin: 10px 0 5px;
             font-weight: bold;
@@ -128,11 +128,13 @@ const PopupCalendar: React.FC<PopupCalendarProps> = ({ onClose }) => {
           .datepicker-wrapper :global(.react-datepicker) {
             border: none;
             font-family: inherit;
+        
           }
 
           .datepicker-wrapper :global(.react-datepicker__header) {
             background-color: #fff;
             border-bottom: none;
+            
             padding: 0;
           }
 
@@ -183,9 +185,9 @@ const PopupCalendar: React.FC<PopupCalendarProps> = ({ onClose }) => {
 }
 
         `}</style>
-            </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default PopupCalendar;

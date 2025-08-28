@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Card from './Card';
-import PopupCalendar from '../PopupCalendar'; // ✅ Исправил ошибку импорта
-
+import PopupCalendar from '../PopupCalendar';
+import MapPopup from '../MapPopup';
 type CardData = {
   id: number;
   image?: string;
@@ -39,7 +39,7 @@ export default function RightContent({
   const [columns, setColumns] = useState(3);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+const [isMapOpen, setIsMapOpen] = useState(false);
   const togglePopup = () => setIsPopupOpen(prev => !prev);
 
   const startPrice = priceRange?.start ?? 0;
@@ -104,7 +104,8 @@ export default function RightContent({
     <main className="rightContentMain" style={{ marginTop: '5%' }}>
       <div className="container_forGeneralHeader">
         <div className="map">
-          <div className="qartez">Քարտեզ</div>
+           <div className="qartez" onClick={() => setIsMapOpen(true)}>Քարտեզ</div>
+      {isMapOpen && <MapPopup onClose={() => setIsMapOpen(false)} />}
           <div className="calendar" onClick={togglePopup} style={{ cursor: 'pointer' }}>
             <i className="fa fa-calendar" aria-hidden="true"></i>
           </div>
@@ -113,7 +114,7 @@ export default function RightContent({
 
       {isPopupOpen && <PopupCalendar onClose={togglePopup} />}
 
-      {/* ... Остальная часть компонента (слайдер, сетка и карточки) остаётся без изменений ... */}
+   
 
       <div className="sliderWrapper" style={{
         display: 'flex',
@@ -167,7 +168,6 @@ export default function RightContent({
         </div>
       </div>
 
-<<<<<<< HEAD
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -175,17 +175,6 @@ export default function RightContent({
         padding: '10px',
         borderBottom: '2px solid #ddd',
       }}>
-=======
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          maxWidth: '1300px',
-          padding: '10px',
-          borderBottom: '2px solid #ddd',
-        }}
-      >
->>>>>>> 000f0148f01e303c2d439b25423e8361bfe94e61
         <span style={{ fontWeight: 'bold' }}>Լավագույն առաջարկներ</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
