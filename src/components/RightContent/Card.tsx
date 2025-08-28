@@ -15,7 +15,7 @@ type CardProps = {
   card: CardData;
   selectedCurrency: string;
   baseCurrency: string;
-  largeMode?: boolean; // ✅ Add prop
+  largeMode?: boolean;
 };
 
 const rates = {
@@ -39,7 +39,7 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
   const isLiked = likedCards.some(c => c.title === card.title);
 
   const handleImageLoad = () => {
-    setTimeout(() => setLoading(false), 1500);
+    setTimeout(() => setLoading(false), 150);
   };
 
   const convertedPrice = convertPrice(card.price || '0', baseCurrency, selectedCurrency);
@@ -48,41 +48,68 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
     <div
       className={`card ${largeMode ? 'large' : ''}`}
       style={{
-        transition: 'all 0.3s ease',
+        background: '#fff',
+        borderRadius: '12px',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+        overflow: 'hidden',
+        cursor: 'pointer',
+        transition: 'all 0.4s ease',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '90%',
+        height: largeMode ? '450px' : '380px'
       }}
     >
-      <div className={`cardImage ${loading ? 'skeleton' : ''}`}>
+      {/* Image */}
+      <div className={`cardImage ${loading ? 'skeleton' : ''}`} style={{ position: 'relative', flexShrink: 0 }}>
         <img
           src={card.image || ''}
           alt={card.title || 'No Title'}
           className={loading ? 'blur' : ''}
           onLoad={handleImageLoad}
-          style={{ height: largeMode ? '320px' : '260px', objectFit: 'cover' }}
+          style={{
+            width: '100%',
+            height: largeMode ? '320px' : '260px',
+            objectFit: 'cover',
+            transition: 'all 0.3s ease',
+          }}
         />
         <button
           className={`likeButton ${isLiked ? 'liked' : ''}`}
           onClick={() => toggleLike(card)}
           aria-label={isLiked ? 'Unlike' : 'Like'}
           type="button"
+          style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            background: 'rgba(255,255,255,0.9)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '36px',
+            height: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+            transition: 'all 0.3s ease'
+          }}
         >
-          <i className="fas fa-heart"></i>
+          <i className="fas fa-heart" style={{ color: isLiked ? 'red' : '#ccc' }}></i>
         </button>
       </div>
-      <div className={`cardInfo ${loading ? 'skeleton' : ''}`}>
-        <h3 className="titleRow">
-          <span className="icon skeleton-icon">
-            <i className="fas fa-map-marker-alt"></i>
-          </span>
+
+     
+      <div className={`cardInfo ${loading ? 'skeleton' : ''}`} style={{ padding: '8px', flexGrow: 1 }}>
+        <h3 className="titleRow" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '16px', margin: '0 0 10px' }}>
+          <span className="icon skeleton-icon"><i className="fas fa-map-marker-alt"></i></span>
           <span className="locationText skeleton-text">{card.location || 'No Location'}</span>
-          <span className="icon peopleIcon skeleton-icon">
-            <i className="fas fa-users"></i>
-          </span>
+          <span className="icon peopleIcon skeleton-icon"><i className="fas fa-users"></i></span>
           <span className="peopleText skeleton-text">{card.people || 'N/A'}</span>
         </h3>
-        <p>
-          <span className="icon skeleton-icon">
-            <i className="fas fa-dollar-sign"></i>
-          </span>
+        <p style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
+          <span className="icon skeleton-icon"><i className="fas fa-dollar-sign"></i></span>
           <span className="skeleton-text">{convertedPrice}</span>
         </p>
       </div>

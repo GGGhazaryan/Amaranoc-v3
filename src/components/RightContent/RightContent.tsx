@@ -186,14 +186,18 @@ const [isMapOpen, setIsMapOpen] = useState(false);
         </div>
       </div>
 
-      <div className="rightContentWrapper" style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
-        width: '100%',
-        gap: '40px',
-        justifyContent: 'center',
-        marginLeft: '80px',
-      }}>
+    <div className="rightContentWrapper" style={{
+  display: 'grid',
+  gridTemplateColumns: columns === 2 
+      ? 'repeat(2, minmax(350px, 1fr))'  // 2 большие колонки
+      : 'repeat(3, minmax(250px, 1fr))', // 3 колонки по умолчанию
+  width: '100%',
+  gap: '40px',
+  justifyContent: 'center',
+  marginLeft: '80px',
+  transition: 'all 0.4s ease'
+}}>
+
         {bathroomFilteredCards.length === 0 ? (
           <div style={{ width: 'max-content', textAlign: 'center', color: '#666', fontSize: 18 }}>
             Ընտրված պարամետրերի համար առաջարկներ չկան
