@@ -1,6 +1,29 @@
 const cards = [
-  { id: 1, image: '2photo.webp', title: 'Դիլիջան', price: ' 120,000 ֏', location: 'Դիլիջան', people: '6' },
-  { id: 2, image: 'firstphoto.webp', title: 'Ձորաղբյուր', price: ' 115,000 ֏', location: 'Ձորաղբյուր', people: '4' },
+  {
+    id: 1,
+    images: [
+      '2photo.webp',
+      '2photo(1).webp',
+      '2photo(2).webp'
+    ],
+    title: 'Դիլիջան',
+    price: '120,000 ֏',
+    location: 'Դիլիջան',
+    people: '6'
+  },
+  {
+    id: 2,
+    images: [
+      'firstphoto.webp',
+      'firstphoto(1).webp',
+      'firstphoto(2).webp'
+    ],
+    title: 'Ձորաղբյուր',
+    price: '115,000 ֏',
+    location: 'Ձորաղբյուր',
+    people: '4'
+  },
+
   { id: 3, image: '3photo.webp', title: 'Ծաղկաձոր', price: ' 125,000 ֏', location: 'Ծաղկաձոր', people: '8' },
   { id: 4, image: '4photo.webp', title: 'Երևան', price: '118,000 ֏', location: 'Երևան', people: '5' },
   { id: 5, image: '5photo.webp', title: 'Երևան', price: ' 112,000 ֏', location: 'Երևան', people: '3' },
@@ -19,6 +42,21 @@ const cards = [
   { id: 18, image: 'firstphoto.webp', title: 'Երևան', price: ' 115,000 ֏', location: 'Երևան', people: '4' },
   { id: 19, image: '3photo.webp', title: 'Ճամբարակ', price: ' 125,000 ֏', location: 'Ճամբարակ', people: '8' },
   { id: 20, image: '4photo.webp', title: 'Ձորաղբյուր', price: ' 118,000 ֏', location: 'Ձորաղբյուր', people: '5' }
-];
+].map(card => {
+  if (card.images) return card;
+  if (card.image) {
+    const name = card.image.replace(/\.\w+$/, '');
+    const ext = card.image.split('.').pop();
+    return {
+      ...card,
+      images: [
+        `${name}.webp`,
+        `${name}(1).webp`,
+        `${name}(2).webp`
+      ]
+    };
+  }
+  return card;
+});
 
 export default cards;
