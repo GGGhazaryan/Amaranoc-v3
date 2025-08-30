@@ -447,7 +447,39 @@ header {
     box-sizing: border-box;
     margin-left: 80px;
     justify-content: center;
+}.option1,
+.option2,
+.option3,
+.option4,
+.option5 {
+  color: #000;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
+
+.option2:hover,
+.option3:hover,
+.option4:hover,
+.option5:hover {
+  text-decoration: underline;
+  text-decoration-color: #ff9100;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
+
+.active {
+  text-decoration: underline;
+  text-decoration-color: #ff9100;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
+
 
 .rightContentWrapper>* {
     justify-self: center;

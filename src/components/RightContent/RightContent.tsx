@@ -104,7 +104,7 @@ export default function RightContent({
     <main className="rightContentMain" style={{ marginTop: '5%' }}>
       <div className="container_forGeneralHeader">
         <div className="map">
-          <div className="qartez" onClick={() => setIsMapOpen(true)}>Քարտեզ</div>
+          <div className="qartez" onClick={() => setIsMapOpen(true)}>Քարտեզ<i style={{marginLeft:'8px',color:'#333',fontSize:'15px'}}className="fa-solid fa-map"></i> </div>
           {isMapOpen && <MapPopup onClose={() => setIsMapOpen(false)} />}
           <div className="calendar" onClick={togglePopup} style={{ cursor: 'pointer' }}>
             <i className="fa fa-calendar" aria-hidden="true"></i>
