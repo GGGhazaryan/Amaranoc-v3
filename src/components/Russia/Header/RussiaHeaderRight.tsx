@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchInput from "./SearchInput";
-import { auth } from "../../firebase";
+import RussiaSearchInput from "./RussiaSearchInput";
+import { auth } from "../../../firebase";
 import { signOut, User } from "firebase/auth";
-import LikedPopup from "../LikedPopup";
-import { useLikedStore } from "../../store";
+import LikedPopup from "../../LikedPopup";
+import { useLikedStore } from "../../../store";
 
-export default function HeaderRight(): React.ReactElement {
+export default function RussiaHeaderRight(): React.ReactElement {
   const [showPopup, setShowPopup] = useState(false);
   const [showLiked, setShowLiked] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false); 
-  const [selectedLanguage, setSelectedLanguage] = useState("հայ"); // Default language
-  const navigate = useNavigate(); // useNavigate hook
+  const [selectedLanguage, setSelectedLanguage] = useState("рус"); 
+  const navigate = useNavigate();
 
   const user: User | null = auth.currentUser;
   const { likedCards } = useLikedStore();
@@ -30,11 +30,11 @@ export default function HeaderRight(): React.ReactElement {
   const handleLanguageChange = (language: string) => {
     setSelectedLanguage(language);
 
-    // Navigate to the appropriate route based on the selected language
-    if (language === "հայ") {
-      navigate("/"); // Stay on the main page
-    } else if (language === "рус") {
-      navigate("/ru"); // Navigate to /ru
+
+    if (language === "рус") {
+      navigate("/ru"); // Stay on the main page
+    } else if (language === "հայ") {
+      navigate("/"); // Navigate to /ru
     } else if (language === "eng") {
       navigate("/eng"); // Navigate to /eng
     }
@@ -47,7 +47,7 @@ export default function HeaderRight(): React.ReactElement {
           <i className="fa-solid fa-globe" onClick={toggleLanguages}></i>
           <i className="fa fa-user" aria-hidden="true" style={{ cursor: "default" }}></i>
         </div>
-        <SearchInput />
+        <RussiaSearchInput />
       </div>
     );
 
@@ -157,7 +157,7 @@ export default function HeaderRight(): React.ReactElement {
         ></i>
       </div>
 
-      <SearchInput />
+      <RussiaSearchInput />
 
       {showPopup && (
         <div

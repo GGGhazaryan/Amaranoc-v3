@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const Sales = () => {
+const RussiaSales = () => {
   return (
     <div>
       <h1 style={{color:'red'}}>Sales Page</h1>
@@ -10,4 +10,4 @@ const Sales = () => {
   );
 };
 
-export default Sales;
+export default RussiaSales;

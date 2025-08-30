@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import {cards} from './../data/DataBase';
-import Filter from '.././components/Filter';
-import '../css/App.css'
+import {Rucard} from './../../data/DataBase';
+import Filter from './RussiaFilter';
+import '../../css/App.css'
 
-export default function MapPopup({ onClose }) {
+export default function RussiaMapPopup({ onClose }) {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [filterLocations, setFilterLocations] = useState([]);
 
-  const locations = [...new Set(cards.map(card => card.location))];
+const locations = [...new Set(Rucard.map(card => card.location))];
+
 
   const filteredCards = filterLocations.length
-    ? cards.filter(card => filterLocations.includes(card.location))
-    : cards;
+    ? Rucard.filter(card => filterLocations.includes(Rucard.location))
+    : Rucard;
 
   const handlePointClick = (card) => {
     setSelectedLocation(card);
@@ -64,15 +65,15 @@ export default function MapPopup({ onClose }) {
         />
 
         {/* Чекпоинты */}
-        {filteredCards.map(card => (
+        {filteredCards.map(Rucard => (
           <div
-            key={card.id}
-            onClick={() => handlePointClick(card)}
+            key={Rucard.id}
+            onClick={() => handlePointClick(Rucard)}
             style={{
               position: 'absolute',
               top: getLocation(card.location).top,
               left: getLocation(card.location).left,
-              backgroundColor: filterLocations.includes(card.location) ? '#FF7A00' : '#111',
+              backgroundColor: filterLocations.includes(Rucard.location) ? '#FF7A00' : '#111',
               width: '60px',
               height: '60px',
               borderRadius: '50%',
@@ -85,8 +86,8 @@ export default function MapPopup({ onClose }) {
             }}
           >
             <img
-              src={`/${card.image}`}
-              alt={card.title}
+              src={`/${Rucard.image}`}
+              alt={Rucard.title}
               style={{
                 width: '50px',
                 height: '50px',

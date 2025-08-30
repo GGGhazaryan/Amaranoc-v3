@@ -434,9 +434,9 @@ header {
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-left: 80px;
+    margin-left: 70px;
     justify-content: center;
-    /* Центрирует всю сетку */
+  
 }
 
 .rightContentWrapper {
@@ -483,12 +483,12 @@ header {
 
 .rightContentWrapper>* {
     justify-self: center;
-    /* Центрирует каждый элемент в ячейке */
+ 
 }
 
 .card {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -505,7 +505,6 @@ header {
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
-/* Image container */
 .cardImage img {
     width: 100%;
     height: 260px;
@@ -513,7 +512,6 @@ header {
     display: block;
 }
 
-/* Info section */
 .cardInfo {
     padding: 20px;
     background-color: #fff;
@@ -526,7 +524,7 @@ header {
 .cardInfo h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    margin: 0 0 10px;
+       
     color: #111;
 }
 
@@ -546,15 +544,9 @@ header {
     display: inline-block;
 }
 
-#iconSpan {
-    margin-left: 10px;
-}
 
-.icon {
-    color: orange;
-    font-size: 16px;
-    margin-right: 10px;
-}
+
+
 
 /* Blur all cards when hovering the container */
 .card:hover {
@@ -726,12 +718,7 @@ header {
     overflow: hidden;
 }
 
-.locationText {
-    flex-shrink: 1;
-    /* сжимается при необходимости */
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 
 .peopleIcon,
 .peopleText {
@@ -739,7 +726,7 @@ header {
     /* не сжимать */
     display: flex;
     align-items: center;
-    gap: 4px;
+    margin-left:-17px;
     color: #555;
     /* можно цвет иконок и текста */
 }
@@ -749,7 +736,7 @@ header {
     align-items: center;
     justify-content: center;
     color: orange;
-    /* цвет иконок */
+  
 
 }
 

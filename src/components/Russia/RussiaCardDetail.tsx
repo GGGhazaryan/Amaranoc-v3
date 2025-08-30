@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {cards} from '../data/DataBase';
-import { useLikedStore } from '../store';
+import {cards} from '../../data/DataBase';
+import { useLikedStore } from '../../store';
 
 type CardData = {
   id: number;
@@ -12,7 +12,7 @@ type CardData = {
   location: string;
   people: string;
   region?: string;
-  phone?: string; // добавим поле с телефоном (если есть)
+  phone?: string;
 };
 
 const rates = {
@@ -48,7 +48,7 @@ function generatePhoneNumber(seed: number): string {
   return `+374 ${part1} ${part2} ${part3}`;
 }
 
-export default function CardDetail({
+export default function RussiaCardDetail({
   selectedCurrency = '$',
   baseCurrency = '֏',
 }: {

@@ -1,42 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import '../../css/App.css';
+import React, { useState, useEffect, useMemo } from 'react';
+import '../../../css/App.css';
+import RussiaRegionFilter from './RussiaRegionFilter';
+import RussiaPriceFilter from './RussiaPriceFilter';
+import RussiaStartEndInput from './RussiaStartEndInput';
+import RussiaPeopleCounter from '../RussiaPeopleCounter';
+import RussiaNightStayFilter from './RussiaNightStayFilter';
+import RussiaRoomFilter from './RussiaRoomFilter';
+import RussiaBathroomFilter from './RussiaBathroomFilter';
+import RussiaPoolFilter from './RussiaPoolFilter';
 
-import RegionFilter from './RegionFilter';
-import PriceFilter from './PriceFilter';
-import StartEndInput from './StartEndInput';
-import PeopleCounter from '../PeopleCounter';
-import NightStayFilter from './NightStayFilter';
-import RoomFilter from './RoomFilter';
-import BathroomFilter from './BathroomFilter';
-import PoolFilter from './PoolFilter';
-import FeatureFilter from './FeatureFilter';
+import RussiaRightContent from '../RightContent/RussiaRightContent';
+import { Rucard } from '../../../data/DataBase';
 
-import RightContent from '../RightContent/RightContent';
-
-import {cards} from '../../data/DataBase';
-
-export default function LeftContent(): React.ReactElement {
+export default function RussiaLeftContent(): React.ReactElement {
   const [loaded, setLoaded] = useState(false);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [peopleCount, setPeopleCount] = useState(1);
-  const [filteredCards, setFilteredCards] = useState(cards);
   const [selectedNightStay, setSelectedNightStay] = useState('');
-  const [selectedCurrency, setSelectedCurrency] = useState('֏');
-  const [selectedRoomCount, setSelectedRoomCount] = useState('Բոլորը');
-  const [selectedBathroomCount, setSelectedBathroomCount] = useState('Բոլորը');
-
+  const [selectedCurrency, setSelectedCurrency] = useState('₽');
+  const [selectedRoomCount, setSelectedRoomCount] = useState('Все');
+  const [selectedBathroomCount, setSelectedBathroomCount] = useState('Все');
   const [priceRange, setPriceRange] = useState({ start: 0, end: Infinity });
+  const baseCurrency = '₽';
 
-  const baseCurrency = '֏';
+  const [filteredCards, setFilteredCards] = useState(Rucard); // State для отфильтрованных карточек
 
+  // Simulate data load with a delay
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  // 🔄 Фильтрация по регионам и людям
-  useEffect(() => {
-    const filtered = cards.filter(card => {
+  // Memoize filteredCards based on selected filters
+  const filteredCardsMemoized = useMemo(() => {
+    return Rucard.filter(card => {
       const cardLocation = card.location?.trim().toLowerCase() || '';
       const regionMatch =
         selectedRegions.length === 0 ||
@@ -45,21 +42,19 @@ export default function LeftContent(): React.ReactElement {
       const cardPeopleNum = Number(card.people) || 0;
       const peopleMatch = cardPeopleNum >= peopleCount;
 
-      return regionMatch && peopleMatch;
+      const priceNum = Number((card.price || '0').replace(/\D/g, ''));
+      const priceMatch = priceNum >= priceRange.start && priceNum <= priceRange.end;
+
+      return regionMatch && peopleMatch && priceMatch;
     });
+  }, [selectedRegions, peopleCount, priceRange]);
 
-    setFilteredCards(filtered);
-  }, [selectedRegions, peopleCount]);
-
+  // Handler for region change
   const handleRegionChange = (regions: string[]) => {
-    setSelectedRegions(prev => {
-      if (JSON.stringify(prev) !== JSON.stringify(regions)) {
-        return regions;
-      }
-      return prev;
-    });
+    setSelectedRegions(regions);
   };
 
+  // Skeleton loader while content is loading
   if (!loaded) {
     return (
       <aside
@@ -76,51 +71,45 @@ export default function LeftContent(): React.ReactElement {
       <div className="father">
         <aside className="container" style={{ marginTop: '19%', height: 'max-content' }}>
           <div className="mainLeftContentDiv">
-            <RegionFilter onRegionChange={handleRegionChange} />
-
-            <PriceFilter
+            <RussiaRegionFilter onRegionChange={handleRegionChange} />
+            <RussiaPriceFilter
               selectedCurrency={selectedCurrency}
               setSelectedCurrency={setSelectedCurrency}
               priceRange={priceRange}
               onPriceRangeChange={setPriceRange}
             />
-
-            <StartEndInput cards={cards} onFilter={setFilteredCards} />
-
-            <PeopleCounter
-              label="Մարդկանց թույլատրելի քանակ"
+            <RussiaStartEndInput
+              cards={Rucard}
+              onFilter={setFilteredCards} // Передаем setFilteredCards в дочерний компонент
+            />
+            <RussiaPeopleCounter
+              label="Количество разрешенных человек"
               min={1}
               max={20}
               onChange={setPeopleCount}
             />
-
-            <NightStayFilter
+            <RussiaNightStayFilter
               selectedNightStay={selectedNightStay}
               onChange={setSelectedNightStay}
             />
-
-        
-
-            <RoomFilter
+            <RussiaRoomFilter
               selectedRoomCount={selectedRoomCount}
               onChange={setSelectedRoomCount}
             />
-
-            <BathroomFilter
+            <RussiaBathroomFilter
               selectedBathroomCount={selectedBathroomCount}
               onBathroomCountChange={setSelectedBathroomCount}
             />
-
-            <PoolFilter />
-          
+            <RussiaPoolFilter />
+       
           </div>
         </aside>
       </div>
 
-      <RightContent
+      <RussiaRightContent
         selectedRegions={selectedRegions}
         priceRange={priceRange}
-        cards={filteredCards}
+        cards={filteredCardsMemoized}
         selectedCurrency={selectedCurrency}
         baseCurrency={baseCurrency}
         selectedNightStay={selectedNightStay}
