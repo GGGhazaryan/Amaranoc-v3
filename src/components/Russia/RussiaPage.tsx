@@ -29,18 +29,18 @@ function RussiaApp() {
       setLoading(false);
 
       if (!currentUser) {
-        navigate("/login");
+        navigate("/ru/login");
       }
     });
 
     return () => unsubscribe();
   }, [navigate]);
 
-  if (loading) return <div>Loading...</div>;
+
 
   return (
     <Routes>
-      <Route path="/login" element={<RussiaLogin />} />
+      <Route path="/ru/login" element={<RussiaLogin />} />
       <Route path="/" element={
         <>
           <RussiaHeader />

@@ -120,20 +120,22 @@ export default function RightContent({
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
-        margin: '20px 0',
+        justifyContent:'center',
+        width:'1300px',
         paddingLeft: '40px',
+        marginRight:'20px'
       }}>
         <div onClick={scrollLeft} style={{
           width: '40px',
           height: '40px',
           borderRadius: '50%',
-          backgroundColor: '#f5f5f5',
+         
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
           cursor: 'pointer',
-          flexShrink: 0,
+       
         }}>
           <i className="fas fa-arrow-left" style={{ fontSize: '18px', color: '#333' }}></i>
         </div>
@@ -161,15 +163,15 @@ export default function RightContent({
     'Գետի ափին',
     'Տաղավար',
   ].map((title, i) => (
-    <div className="rightContentHeader" key={i} style={{ textAlign: 'center' }}>
+    <div className="rightContentHeader" key={i} style={{ textAlign: 'center'}}>
       <img
         className="itemsInHeader"
         src={`./item${i + 1}.png`} // Индекс для изображения, начиная с 1
         alt={`item${i + 1}`}
-        style={{ width: '100%', maxWidth: '150px', height: 'auto' }} // Стили для изображения
+        style={{ maxWidth: '190px', height: '55px' }} // Стили для изображения
       />
       <p style={{
-        marginTop: '10px', // Отступ сверху для текста
+        marginTop: '5px', // Отступ сверху для текста
         fontSize: '14px', // Размер шрифта
         color: '#333', // Цвет текста
         fontWeight: 'bold', // Жирное начертание текста
@@ -200,7 +202,7 @@ export default function RightContent({
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        maxWidth: '1300',
+        width: '1300px',
         padding: '10px',
         borderBottom: '2px solid #ddd',
       }}>

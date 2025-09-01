@@ -177,17 +177,17 @@ export default function HeaderRight(): React.ReactElement {
           }}
         >
           <p>
-            <strong>Identifier:</strong>{" "}
+            <strong>Անուն:</strong>{" "}
             {user.displayName || user.email || "Anonymous"}
           </p>
           <p>
-            <strong>Created:</strong> {user.metadata.creationTime || "Unknown"}
+            <strong>Ստեղծված:</strong> {user.metadata.creationTime || "Unknown"}
           </p>
           <p>
-            <strong>Signed In:</strong> {user.metadata.lastSignInTime || "Unknown"}
+            <strong>Գրանցված:</strong> {user.metadata.lastSignInTime || "Unknown"}
           </p>
           <p>
-            <strong>User UID:</strong> {user.uid}
+            <strong>UID:</strong> {user.uid}
           </p>
           <button
             onClick={handleLogout}

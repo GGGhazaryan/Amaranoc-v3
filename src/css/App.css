@@ -436,7 +436,7 @@ header {
     box-sizing: border-box;
     margin-left: 70px;
     justify-content: center;
-  
+
 }
 
 .rightContentWrapper {
@@ -447,18 +447,20 @@ header {
     box-sizing: border-box;
     margin-left: 80px;
     justify-content: center;
-}.option1,
+}
+
+.option1,
 .option2,
 .option3,
 .option4,
 .option5 {
-  color: #000;
-  cursor: pointer;
-  font-weight: 700;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    color: #000;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -467,23 +469,23 @@ header {
 .option3:hover,
 .option4:hover,
 .option5:hover {
-  text-decoration: underline;
-  text-decoration-color: #ff9100;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 7px;
+    text-decoration: underline;
+    text-decoration-color: #ff9100;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
 }
 
 .active {
-  text-decoration: underline;
-  text-decoration-color: #ff9100;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 7px;
+    text-decoration: underline;
+    text-decoration-color: #ff9100;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
 }
 
 
 .rightContentWrapper>* {
     justify-self: center;
- 
+
 }
 
 .card {
@@ -524,7 +526,7 @@ header {
 .cardInfo h2 {
     font-size: 1.5rem;
     font-weight: 700;
-       
+
     color: #111;
 }
 
@@ -548,12 +550,7 @@ header {
 
 
 
-/* Blur all cards when hovering the container */
-.card:hover {
-    filter: blur(4px);
-    transform: scale(0.95);
-    opacity: 0.7;
-}
+
 
 .rightContentWrapper .card:hover {
     filter: none;
@@ -709,12 +706,12 @@ header {
 
 .titleRow {
     display: flex;
-    gap:45px;
-   
+    gap: 45px;
+
     align-items: center;
-   
+
     white-space: nowrap;
-    
+
     overflow: hidden;
 }
 
@@ -726,7 +723,7 @@ header {
     /* не сжимать */
     display: flex;
     align-items: center;
-    margin-left:-17px;
+    margin-left: -17px;
     color: #555;
     /* можно цвет иконок и текста */
 }
@@ -736,7 +733,7 @@ header {
     align-items: center;
     justify-content: center;
     color: orange;
-  
+
 
 }
 
@@ -770,21 +767,21 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+
     border: none;
-    width: 100%;
-    max-width: 1100px;
+    width: 120%;
+
     background: #fff;
     border-bottom: 2px solid #ddd;
     overflow-x: auto;
-    margin-left: 90px;
+    margin-left: 70px;
 }
 
 .rightContentHeader {
     font-size: 18px;
     font-weight: 700;
     color: #000;
-    margin-left: 2%;
+    margin-left: 10px;
     border: none;
     width: auto;
     height: auto;
@@ -811,7 +808,10 @@ header {
 
 
 .itemsInHeader {
+    display: flex;
     cursor: pointer;
+
+
 }
 
 .map-popup {
@@ -827,6 +827,34 @@ header {
     justify-content: center;
     z-index: 9999;
 }
+
+.headerTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.headerTitle h1 {
+    position: relative;
+    padding: 0 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.headerTitle::before,
+.headerTitle::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: black;
+    margin: 0 10px;
+}
+
 
 .close-btn {
     position: absolute;
@@ -931,7 +959,7 @@ header {
 .card {
     width: 100%;
     max-width: 400px;
-    
+
 }
 
 .card.large {
@@ -1114,4 +1142,161 @@ header {
     justify-content: center;
 
     align-items: center;
+}
+
+.cardsSales {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.salesCard {
+    width: 500px;
+    height: 300px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    color: white;
+}
+
+.salesCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.salesContent {
+    position: relative;
+    z-index: 1;
+}
+
+.salesContent h2 {
+    font-size: 38px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.salesContent p {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.salesContent span {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.textPlaceholderSecondary {
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.titleSec {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: #333;
+}
+
+.giftcard {
+    color: orange;
+    font-weight: bold;
+}
+
+.underlineOrange {
+    width: 390px;
+    height: 4px;
+    background-color: orange;
+    margin: 10px auto 25px;
+    border-radius: 2px;
+}
+
+.textSec {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    margin-top: 2%;
+    padding: 0 20px;
+}
+
+.sectionTitle h2 {
+    position: relative;
+    padding: 0 20px;
+    font-size: 28px;
+    font-weight: bold;
+    white-space: nowrap;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 2%;
+}
+
+.sectionTitle::before,
+.sectionTitle::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: black;
+    margin: 0 10px;
+    margin-top: 2%;
+}input[type="range"].customRange {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 6px;
+  background: linear-gradient(to right, orange 0%, orange var(--value, 0%), #ccc var(--value, 0%), #ccc 100%);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Chrome/Edge/Safari */
+input[type="range"].customRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: orange;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  margin-top: -5px;
+}
+
+/* Firefox */
+input[type="range"].customRange::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: orange;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Firefox track */
+input[type="range"].customRange::-moz-range-track {
+  background: #ccc;
+  height: 6px;
+  border-radius: 5px;
 }
