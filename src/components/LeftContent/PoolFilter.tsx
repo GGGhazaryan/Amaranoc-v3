@@ -7,7 +7,6 @@ type PoolFilterProps = {
 export default function PoolFilter({ onPoolFilterChange }: PoolFilterProps) {
   const [poolOptions, setPoolOptions] = useState<string[]>([]);
 
-  // Загружаем опции для фильтра
   useEffect(() => {
     const fetchPoolOptions = async () => {
       try {
@@ -26,24 +25,25 @@ export default function PoolFilter({ onPoolFilterChange }: PoolFilterProps) {
   }, []);
 
   // Обработчик клика по кнопке
-  const handleButtonClick = (option: string) => {
-    onPoolFilterChange(option); // Передаем выбранную опцию в родительский компонент
-  };
+  // const handleButtonClick = (option: string) => {
+  //   onPoolFilterChange(option); // Передаем выбранную опцию в родительский компонент
+  // };
 
   return (
-    <div className="poolSection">
-      <label className="sectionLabel">Լողավազան</label>
-      <div className="poolBtns">
-        {poolOptions.map((option, index) => (
-          <button
-            key={index}
-            className={option === 'Բոլորը' ? 'allBtn' : 'poolBtn'}
-            onClick={() => handleButtonClick(option)} // Обработчик нажатия
-          >
-            {option}
-          </button>
-        ))}
-      </div>
-    </div>
+    // <div className="poolSection">
+    //   <label className="sectionLabel">Լողավազան</label>
+    //   <div className="poolBtns">
+    //     {poolOptions.map((option, index) => (
+    //       <button
+    //         key={index}
+    //         className={option === 'Բոլորը' ? 'allBtn' : 'poolBtn'}
+    //         onClick={() => handleButtonClick(option)} // Обработчик нажатия
+    //       >
+    //         {option}
+    //       </button>
+    //     ))}
+    //   </div>
+    // </div>
+    <></>
   );
 }

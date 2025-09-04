@@ -12,7 +12,7 @@ type CardData = {
   location: string;
   people: string;
   region?: string;
-  phone?: string; // добавим поле с телефоном (если есть)
+  phone?: string;
 };
 
 const rates = {

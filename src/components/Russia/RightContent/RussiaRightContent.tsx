@@ -1,12 +1,11 @@
 import React, { useState, useRef } from 'react';
 import RussiaCard from './RussiaCard';
-import PopupCalendar from '../RussiaPopupCalendar';
-import MapPopup from '../RussiaMapPopup';
+import RussiaPopupCalendar from '../RussiaPopupCalendar';
+import RussiaMapPopup from '../RussiaMapPopup';
 
 type CardData = {
   id: number;
   image?: string;
-  images?: string[];
   title?: string;
   price?: string;
   location?: string;
@@ -27,7 +26,8 @@ type RightContentProps = {
   selectedRoomCount: string;
   selectedBathroomCount: string;
 };
-export default function RussiaRightContent({
+
+export default function RightContent({
   selectedRegions = [],
   priceRange,
   cards,
@@ -41,6 +41,21 @@ export default function RussiaRightContent({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
+
+  const itemFilters = [
+    'Виллы',
+    'Каркасные дома',
+    'Коттеджи',
+    'Закрытый бассейн',
+    'Тихое место',
+    'Роскошный вид',
+    'Популярные',
+    'На берегу озера',
+    'На берегу реки',
+    'Беседка',
+  ];
+
   const togglePopup = () => setIsPopupOpen(prev => !prev);
 
   const startPrice = priceRange?.start ?? 0;
@@ -54,22 +69,19 @@ export default function RussiaRightContent({
       ? cards.slice(halfIndex)
       : cards;
 
-  // Check if cardsToShow is an array
-  const filteredCards = Array.isArray(cardsToShow)
-    ? cardsToShow.filter(card => {
-        const cardLocation = card.location?.trim().toLowerCase() || '';
-        const regionMatch =
-          selectedRegions.length === 0 ||
-          selectedRegions.some(region => region.trim().toLowerCase() === cardLocation);
-        const priceNum = Number((card.price || '0').replace(/\D/g, ''));
-        const priceMatch = priceNum >= startPrice && priceNum <= endPrice;
-        return regionMatch && priceMatch;
-      })
-    : []; // Default to an empty array if cardsToShow is not an array
+  const filteredCards = cardsToShow.filter(card => {
+    const cardLocation = card.location?.trim().toLowerCase() || '';
+    const regionMatch =
+      selectedRegions.length === 0 ||
+      selectedRegions.some(region => region.trim().toLowerCase() === cardLocation);
+    const priceNum = Number((card.price || '0').replace(/\D/g, ''));
+    const priceMatch = priceNum >= startPrice && priceNum <= endPrice;
+    return regionMatch && priceMatch;
+  });
 
   const roomFilteredCards = filteredCards.filter(card => {
     if (selectedRoomCount === 'Все') return true;
-    const roomNumber = selectedRoomCount === '6 և более' ? 6 : Number(selectedRoomCount);
+    const roomNumber = selectedRoomCount === '6 и более' ? 6 : Number(selectedRoomCount);
     if (isNaN(roomNumber)) return true;
     return card.id % 6 === roomNumber % 6;
   });
@@ -83,6 +95,21 @@ export default function RussiaRightContent({
     if (isNaN(bathroomNumber)) return true;
     return card.id % 4 === bathroomNumber;
   });
+
+  const getRandomCards = (arr: CardData[], count: number) => {
+    if (arr.length <= count) return arr;
+    const shuffled = [...arr].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+  };
+
+  const finalCards =
+    selectedItemIndex !== null
+      ? getRandomCards(bathroomFilteredCards, Math.floor(Math.random() * 2) + 2)
+      : bathroomFilteredCards;
+
+  const handleItemClick = (index: number) => {
+    setSelectedItemIndex(prev => (prev === index ? null : index));
+  };
 
   const handleGrid2Click = () => {
     setColumns(prev => (prev === 2 ? 3 : 2));
@@ -109,77 +136,121 @@ export default function RussiaRightContent({
       <div className="container_forGeneralHeader">
         <div className="map">
           <div className="qartez" onClick={() => setIsMapOpen(true)}>
-           Карта
-            <i style={{ marginLeft: '8px', color: '#333', fontSize: '15px' }} className="fa-solid fa-map"></i>
+            Карта<i style={{ marginLeft: '8px', color: '#333', fontSize: '15px' }} className="fa-solid fa-map"></i>
           </div>
-          {isMapOpen && <MapPopup onClose={() => setIsMapOpen(false)} />}
+          {isMapOpen && <RussiaMapPopup onClose={() => setIsMapOpen(false)} />}
           <div className="calendar" onClick={togglePopup} style={{ cursor: 'pointer' }}>
             <i className="fa fa-calendar" aria-hidden="true"></i>
           </div>
         </div>
       </div>
+      {isPopupOpen && <RussiaPopupCalendar onClose={togglePopup} />}
 
-      {isPopupOpen && <PopupCalendar onClose={togglePopup} />}
-
-      <div className="sliderWrapper" style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-        margin: '20px 0',
-        paddingLeft: '40px',
-      }}>
-        <div onClick={scrollLeft} style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          backgroundColor: '#f5f5f5',
+      <div
+        className="sliderWrapper"
+        style={{
           display: 'flex',
           alignItems: 'center',
+          gap: '10px',
           justifyContent: 'center',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-          cursor: 'pointer',
-          flexShrink: 0,
-        }}>
+          width: '1300px',
+          paddingLeft: '40px',
+          marginRight: '20px',
+        }}
+      >
+        <div
+          onClick={scrollLeft}
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+            cursor: 'pointer',
+          }}
+        >
           <i className="fas fa-arrow-left" style={{ fontSize: '18px', color: '#333' }}></i>
         </div>
 
-        <div className="headersContainer" ref={scrollRef} style={{
-          display: 'flex',
-          overflowX: 'auto',
-          scrollBehavior: 'smooth',
-          gap: '20px',
-          padding: '5px 0',
-        }}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
-            <div className="rightContentHeader" key={i}>
-              <img className="itemsInHeader" src={`./item${i}.png`} alt={`item${i}`} />
+        <div
+          className="headersContainer"
+          ref={scrollRef}
+          style={{
+            display: 'flex',
+            overflowX: 'auto',
+            scrollBehavior: 'smooth',
+            gap: '20px',
+            padding: '5px 0',
+          }}
+        >
+          {itemFilters.map((title, i) => (
+            <div
+              key={i}
+              onClick={() => handleItemClick(i)}
+              style={{
+                textAlign: 'center',
+                cursor: 'pointer',
+                borderBottom: selectedItemIndex === i ? '3px solid orange' : '3px solid transparent',
+                paddingBottom: '5px',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <img
+                className="itemsInHeader"
+                src={`./item${i + 1}.png`}
+                alt={`item${i + 1}`}
+                style={{
+                  maxWidth: '190px',
+                  height: '55px',
+                  opacity: selectedItemIndex === i ? 1 : 0.6,
+                  transition: 'opacity 0.3s ease',
+                }}
+              />
+              <p
+                style={{
+                  marginTop: '5px',
+                  fontSize: '14px',
+                  color: '#333',
+                  fontWeight: 'bold',
+                  opacity: selectedItemIndex === i ? 1 : 0.6,
+                }}
+              >
+                {title}
+              </p>
             </div>
           ))}
-        </div>
 
-        <div onClick={scrollRight} style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          backgroundColor: '#f5f5f5',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-          cursor: 'pointer',
-          flexShrink: 0,
-        }}>
-          <i className="fas fa-arrow-right" style={{ fontSize: '18px', color: '#333' }}></i>
+          <div
+            onClick={scrollRight}
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              backgroundColor: '#f5f5f5',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+          >
+            <i className="fas fa-arrow-right" style={{ fontSize: '18px', color: '#333' }}></i>
+          </div>
         </div>
       </div>
 
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        maxWidth: '1300',
-        padding: '10px',
-        borderBottom: '2px solid #ddd',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '1300px',
+          padding: '10px',
+          borderBottom: '2px solid #ddd',
+        }}
+      >
         <span style={{ fontWeight: 'bold', marginLeft: '5%', opacity: '0.7' }}>Лучшие предложения</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
@@ -191,35 +262,42 @@ export default function RussiaRightContent({
         </div>
       </div>
 
-      <div className="rightContentWrapper" style={{
-        display: 'grid',
-        gridTemplateColumns: columns === 2
-          ? 'repeat(2, minmax(350px, 1fr))'
-          : 'repeat(3, minmax(250px, 1fr))',
-        width: '100%',
-        gap: '40px',
-        justifyContent: 'center',
-        marginLeft: '80px',
-        transition: 'all 0.4s ease'
-      }}>
-
-        {bathroomFilteredCards.length === 0 ? (
-          <div style={{ width: 'max-content', textAlign: 'center', color: '#666', fontSize: 18 }}>
-            Ընտրված պարամետրերի համար առաջարկներ չկան
+      <div
+        className="rightContentWrapper"
+        style={{
+          display: 'grid',
+          gridTemplateColumns:
+            columns === 2 ? 'repeat(2, minmax(350px, 1fr))' : 'repeat(3, minmax(250px, 1fr))',
+          width: '100%',
+          gap: '40px',
+          justifyContent: 'center',
+          marginLeft: '80px',
+          transition: 'all 0.4s ease',
+        }}
+      >
+        {finalCards.length === 0 ? (
+          <div
+            style={{
+              width: 'max-content',
+              color: '#666',
+              fontSize: 18,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            Для выбранных параметров нет предложений
           </div>
         ) : (
-          bathroomFilteredCards.map(card => {
-            const images = card.images?.length ? card.images : card.image ? [card.image] : ['default.jpg'];
-            return (
-              <RussiaCard
-                key={card.id}
-                card={{ ...card, images }} // Передаем images как массив
-                selectedCurrency={selectedCurrency}
-                baseCurrency={baseCurrency}
-                largeMode={columns === 2}
-              />
-            );
-          })
+          finalCards.map(card => (
+            <RussiaCard
+              key={card.id}
+              card={card}
+              selectedCurrency={selectedCurrency}
+              baseCurrency={baseCurrency}
+              largeMode={columns === 2}
+            />
+          ))
         )}
       </div>
     </main>

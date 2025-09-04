@@ -23,8 +23,8 @@ export const cards = [
     location: 'Ձորաղբյուր',
     people: '4'
   },
-
-  { id: 3, image: '3photo.webp', title: 'Ծաղկաձոր', price: ' 125,000 ֏', location: 'Ծաղկաձոր', people: '8' },
+ 
+{ id: 3, image: '3photo.webp', title: 'Ծաղկաձոր', price: ' 125,000 ֏', location: 'Ծաղկաձոր', people: '8' },
   { id: 4, image: '4photo.webp', title: 'Երևան', price: '118,000 ֏', location: 'Երևան', people: '5' },
   { id: 5, image: '5photo.webp', title: 'Երևան', price: ' 112,000 ֏', location: 'Երևան', people: '3' },
   { id: 6, image: '6photo.webp', title: 'Դիլիջան', price: ' 130,000 ֏', location: 'Դիլիջան', people: '10' },

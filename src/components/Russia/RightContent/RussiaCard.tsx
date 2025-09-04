@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useLikedStore } from '../../../store';
 import { useNavigate } from 'react-router-dom';
 
-// Заменяем типы на те, которые могут быть в Rucard
+
 type CardData = {
   id: number;
   image?: string;

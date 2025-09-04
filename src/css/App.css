@@ -1300,3 +1300,14 @@ input[type="range"].customRange::-moz-range-track {
   height: 6px;
   border-radius: 5px;
 }
+.about-header{
+    border:1px solid black;
+    width:150px;
+    height:150px;
+}
+.card-1-1{
+    width:500px;
+    height:320px;
+    border-radius:20px;
+    
+}
