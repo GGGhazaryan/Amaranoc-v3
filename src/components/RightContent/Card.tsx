@@ -110,7 +110,6 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
           }}
         />
 
-        
         {images.length > 1 && (
           <div
             style={{
@@ -144,7 +143,6 @@ export default function Card({ card, selectedCurrency, baseCurrency, largeMode =
           </div>
         )}
 
-     
         <button
           className={`likeButton ${isLiked ? 'liked' : ''}`}
           onClick={(e) => {
