@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect,useMemo  } from 'react';
 import { useLikedStore } from '../../../store';
 import { useNavigate } from 'react-router-dom';
 
@@ -57,29 +57,44 @@ export default function RussiaCard({ card, selectedCurrency, baseCurrency, large
   };
 
   const convertedPrice = convertPrice(card.price || '0', baseCurrency, selectedCurrency);
+const images = useMemo(() => {
+  if (card.images && card.images.length > 0) return card.images;
+  if (card.image) return generateImageArray(card.image, 4);
+  return ['placeholder.jpg'];
+}, [card.images, card.image]);
+  useEffect(() => {
+    const handleStart = () => {
+      if (intervalRef.current) return;
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex(prev => (prev + 1) % images.length);
+      }, 2000);
+    };
 
-  const images = card.images && card.images.length > 0
-    ? card.images
-    : card.image
-      ? generateImageArray(card.image, 4)
-      : ['placeholder.jpg'];
+    const handleStop = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
 
-  const startAutoPlay = () => {
-    if (intervalRef.current) return;
-    intervalRef.current = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % images.length);
-    }, 2000);
-  };
-
-  const stopAutoPlay = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+    const cardElement = document.getElementById(`card-${card.id}`);
+    if (cardElement) {
+      cardElement.addEventListener('mouseenter', handleStart);
+      cardElement.addEventListener('mouseleave', handleStop);
     }
-  };
+
+    return () => {
+      handleStop(); 
+      if (cardElement) {
+        cardElement.removeEventListener('mouseenter', handleStart);
+        cardElement.removeEventListener('mouseleave', handleStop);
+      }
+    };
+  }, [card.id, images.length]);
 
   return (
     <div
+      id={`card-${card.id}`}
       className={`card ${largeMode ? 'large' : ''}`}
       style={{
         background: '#fff',
@@ -94,8 +109,7 @@ export default function RussiaCard({ card, selectedCurrency, baseCurrency, large
         height: largeMode ? '450px' : '380px'
       }}
       onClick={() => navigate(`/id/${card.id}`)}
-      onMouseEnter={startAutoPlay}
-      onMouseLeave={stopAutoPlay}
+  
     >
       <div className={`cardImage ${loading ? 'skeleton' : ''}`} style={{ position: 'relative', flexShrink: 0 }}>
         <img

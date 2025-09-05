@@ -145,54 +145,76 @@ export default function HeaderRight(): React.ReactElement {
 
       <SearchInput />
 
-      {showPopup && (
-        <div
-          className="user-popup"
+    {showPopup && (
+  <div
+    className="user-popup-overlay"
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0,0,0,0.5)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 1000,
+    }}
+    onClick={() => setShowPopup(false)} 
+  >
+    <div
+      className="user-popup"
+      style={{
+        background: "white",
+        borderRadius: "12px",
+        width: "650px",
+        padding: "2rem",
+        display: "flex",
+        gap: "2rem",
+        boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+        position: "relative",
+      }}
+      onClick={(e) => e.stopPropagation()} 
+    >
+      <img
+        src="/user4.webp"
+        alt="User"
+        style={{
+          width: "150px",
+          height: "150px",
+          borderRadius: "50%",
+          objectFit: "cover",
+        }}
+      />
+      <div style={{ flex: 1 }}>
+        <h2 style={{ marginBottom: "1rem", color: "#333" }}>
+          {user.displayName || user.email || "Anonymous"}
+        </h2>
+        <p><strong>Ստեղծված:</strong> {user.metadata.creationTime || "Unknown"}</p>
+        <p><strong>Վերջին մուտք:</strong> {user.metadata.lastSignInTime || "Unknown"}</p>
+        <p><strong>UID:</strong> {user.uid}</p>
+        <button
+          onClick={handleLogout}
           style={{
-            position: "absolute",
-            top: "40px",
-            right: "0",
-            background: "white",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+            marginTop: "1.5rem",
+            padding: "0.75rem 1.5rem",
             borderRadius: "8px",
-            padding: "1rem",
-            width: "380px",
-            zIndex: 100,
-            fontSize: "14px",
-            color: "#333",
+            border: "none",
+            backgroundColor: "#ff6600",
+            color: "#fff",
+            cursor: "pointer",
+            fontSize: "16px",
+            fontWeight: "bold",
+            width: "100%",
           }}
         >
-          <p>
-            <strong>Անուն:</strong>{" "}
-            {user.displayName || user.email || "Anonymous"}
-          </p>
-          <p>
-            <strong>Ստեղծված:</strong> {user.metadata.creationTime || "Unknown"}
-          </p>
-          <p>
-            <strong>Գրանցված:</strong> {user.metadata.lastSignInTime || "Unknown"}
-          </p>
-          <p>
-            <strong>UID:</strong> {user.uid}
-          </p>
-          <button
-            onClick={handleLogout}
-            style={{
-              marginTop: "1rem",
-              padding: "0.5rem 1rem",
-              borderRadius: "6px",
-              border: "none",
-              backgroundColor: "#ff6600",
-              color: "#fff",
-              cursor: "pointer",
-              width: "100%",
-              fontWeight: "bold",
-            }}
-          >
-            <i className="fa fa-sign-out" aria-hidden="true"></i>
-          </button>
-        </div>
-      )}
+          <i className="fa fa-sign-out" aria-hidden="true"></i> Դուրս գալ
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
       {showLiked && (
         <div

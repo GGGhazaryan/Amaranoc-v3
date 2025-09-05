@@ -103,21 +103,7 @@ export default function RussiaHeaderRight(): React.ReactElement {
             >
               рус
             </button>
-            <button
-              onClick={() => handleLanguageChange("eng")}
-              style={{
-                background: "#333",
-                color: selectedLanguage === "eng" ? "white" : "gray",
-                opacity: selectedLanguage === "eng" ? 1 : 0.6,
-                border: "none",
-                padding: "0.5rem",
-                borderRadius: "6px",
-                width: "100%",
-                cursor: "pointer",
-              }}
-            >
-              eng
-            </button>
+          
           </div>
         )}
 

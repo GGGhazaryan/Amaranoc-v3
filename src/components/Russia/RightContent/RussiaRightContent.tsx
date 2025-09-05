@@ -104,7 +104,7 @@ export default function RightContent({
 
   const finalCards =
     selectedItemIndex !== null
-      ? getRandomCards(bathroomFilteredCards, Math.floor(Math.random() * 2) + 2)
+      ? getRandomCards(bathroomFilteredCards, Math.floor(Math.random() * 3) + 2)
       : bathroomFilteredCards;
 
   const handleItemClick = (index: number) => {

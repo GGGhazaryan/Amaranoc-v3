@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navLinks: { href: string; text: string }[] = [
-  { href: '/', text: 'Главная' },
+  { href: '/ru', text: 'Главная' },
   { href: '/sales', text: 'Скидки' },
   { href: '/services', text: 'Услуги' },
   { href: '/about-us', text: 'О нас' },

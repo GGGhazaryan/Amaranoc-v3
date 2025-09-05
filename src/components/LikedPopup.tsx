@@ -6,7 +6,7 @@ export default function LikedPopup(): React.ReactElement {
   const { likedCards, removeFromLiked } = useLikedStore();
 
   if (likedCards.length === 0) {
-    return <div className="popup" style={{ textAlign: 'center' }}>No liked posts!</div>;
+    return <div className="popup" style={{ textAlign: 'center' }}>Հավանած գրառումներ չկան:</div>;
   }
 
   return (
@@ -25,9 +25,9 @@ export default function LikedPopup(): React.ReactElement {
             className="deleteBtn"
             onClick={() => removeFromLiked(card)}
             title="Remove from liked"
-            style={{marginLeft:'40px' ,fontSize:'20px'}}
+            style={{ marginLeft: '40px', fontSize: '20px' }}
           >
-            <i className="fa fa-trash" style={{border:'none !important'}} aria-hidden="true"></i>
+            <i className="fa fa-trash" style={{ border: 'none !important' }} aria-hidden="true"></i>
           </button>
         </div>
       ))}

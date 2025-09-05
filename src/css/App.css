@@ -50,7 +50,7 @@ header {
 .option3,
 .option4,
 .option5 {
-    color: #000;
+    color: #333333;
     cursor: pointer;
     font-weight: 700;
     text-decoration: none;
@@ -1310,4 +1310,147 @@ input[type="range"].customRange::-moz-range-track {
     height:320px;
     border-radius:20px;
     
+}
+@media screen and (max-width: 1280px) {
+    header {
+        padding: 0 10px !important;
+        height: 55px !important;
+    }
+
+    .logo {
+        width: 140px !important;
+        margin-left: 10px !important;
+    }
+
+    .allOptions {
+        position: static !important;
+        transform: none !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        padding: 10px 0 !important;
+    }
+
+    .option1,
+    .option2,
+    .option3,
+    .option4,
+    .option5 {
+        font-size: 14px !important;
+        padding: 5px !important;
+    }
+
+    .headerRightPlaceholder {
+        display: none !important;
+    }
+
+    .contentWrapper {
+        flex-direction: column !important;
+        padding: 10px !important;
+        margin-top: 55px !important;
+        height: auto !important;
+    }
+
+    .container {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .rightContentWrapper {
+        grid-template-columns: repeat(1, 1fr) !important;
+        margin-left: 0 !important;
+        padding: 10px !important;
+        gap: 20px !important;
+    }
+
+    .card {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .cardImage img {
+        height: 200px !important;
+    }
+
+    .footerContainer {
+        margin-top: 50px !important;
+        padding: 40px 10px !important;
+    }
+
+    .footerGlass {
+        max-width: 100% !important;
+        padding: 25px !important;
+    }
+
+    .finalFooter {
+        margin-top: 40px !important;
+        padding: 40px 10px !important;
+    }
+
+    .headersContainer {
+        margin-left: 0 !important;
+        padding: 5px 10px !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .qartez {
+        width: 120px !important;
+        margin-left: 0 !important;
+    }
+
+    .calendar {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    .cardsSales {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .salesCard {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .textPlaceholderSecondary {
+        padding: 0 10px !important;
+    }
+
+    .titleSec {
+        font-size: 24px !important;
+    }
+
+    .underlineOrange {
+        width: 200px !important;
+    }
+
+    .textSec {
+        padding: 0 10px !important;
+    }
+
+    .sectionTitle h2 {
+        font-size: 22px !important;
+    }
+
+    .map-popup .map-container {
+        width: 95% !important;
+        height: 80% !important;
+    }
+
+    .map-point {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .map-point:hover {
+        transform: translate(-50%, -50%) scale(1.1) !important;
+    }
+
+    .info-box {
+        width: 90% !important;
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
 }
