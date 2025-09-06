@@ -136,7 +136,7 @@ export default function RightContent({
       <div className="container_forGeneralHeader">
         <div className="map">
           <div className="qartez" onClick={() => setIsMapOpen(true)}>
-            Քարտեզ<i style={{ marginLeft: '8px', color: '#333', fontSize: '15px' }} className="fa-solid fa-map"></i>
+            <span className="idqartez">Քարտեզ</span><i style={{ marginLeft: '8px', color: '#333', fontSize: '15px' }} className="fa-solid fa-map"></i>
           </div>
           {isMapOpen && <MapPopup onClose={() => setIsMapOpen(false)} />}
           <div className="calendar" onClick={togglePopup} style={{ cursor: 'pointer' }}>
@@ -251,7 +251,7 @@ export default function RightContent({
           borderBottom: '2px solid #ddd',
         }}
       >
-        <span style={{ fontWeight: 'bold', marginLeft: '5%', opacity: '0.7' }}>Լավագույն առաջարկներ</span>
+        <span className="span" style={{ fontWeight: 'bold', marginLeft: '5%', opacity: '0.7' }}>Լավագույն առաջարկներ</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '5px', alignItems: 'center' }}>
           <div onClick={handleGrid2Click} style={{ cursor: 'pointer' }}>
             <img className="grid2" src="./grid-2.png" alt="grid2icon" />

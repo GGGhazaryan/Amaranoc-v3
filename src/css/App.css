@@ -1329,6 +1329,7 @@ input[type="range"].customRange::-moz-range-track {
         justify-content: center !important;
         gap: 15px !important;
         padding: 10px 0 !important;
+        margin-left:10px;
     }
 
     .option1,
@@ -1340,9 +1341,6 @@ input[type="range"].customRange::-moz-range-track {
         padding: 5px !important;
     }
 
-    .headerRightPlaceholder {
-        display: none !important;
-    }
 
     .contentWrapper {
         flex-direction: column !important;
@@ -1363,14 +1361,7 @@ input[type="range"].customRange::-moz-range-track {
         gap: 20px !important;
     }
 
-    .card {
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-
-    .cardImage img {
-        height: 200px !important;
-    }
+ 
 
     .footerContainer {
         margin-top: 50px !important;
@@ -1395,15 +1386,23 @@ input[type="range"].customRange::-moz-range-track {
     }
 
     .qartez {
-        width: 120px !important;
-        margin-left: 0 !important;
+        width: 50px !important;
+      margin-left:0 auto;
     }
-
+    .idqartez{
+        display:none;
+        
+    }
+    .map{
+        margin-left:5%;
+    }
     .calendar {
         width: 45px !important;
         height: 45px !important;
     }
-
+    .span{
+        margin-left:15%;
+    }
     .cardsSales {
         flex-direction: column !important;
         gap: 20px !important;
