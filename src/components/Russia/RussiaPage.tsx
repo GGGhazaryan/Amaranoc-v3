@@ -9,13 +9,17 @@ import RussiaHeader from "./Header/RussiaHeader";
 import RussiaFooter from "./Footer/RussiaFooter";
 import Chat from "../../components/Chat/Chat/Chat";
 import RussiaLogin from "./Registration/RussiaLoginRegister";
-import RussiaCardDetail from './RussiaCardDetail';
-import RussiaSales from './RussiaSales';
-import RussiaServices from './RussiaServices';
-import RussiaAboutUs from './RussiaAboutUs';
+import CardDetail from '../CardDetail';
+import Sales from '../Sales';
+import Services from '../Services';
+import AboutUs from '../AboutUs';
 
-import "../../css/App.css";
+import RussiaPage from './RussiaPage'
+
+
+import  "../../css/App.css";
 import "../../css/index.css";
+
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function RussiaApp() {
@@ -29,7 +33,8 @@ function RussiaApp() {
       setLoading(false);
 
       if (!currentUser) {
-        navigate("/ru/login");
+        navigate("/login");
+        console.error('no login')
       }
     });
 
@@ -40,7 +45,7 @@ function RussiaApp() {
 
   return (
     <Routes>
-      <Route path="/ru/login" element={<RussiaLogin />} />
+      <Route path="/login" element={<RussiaLogin />} />
       <Route path="/" element={
         <>
           <RussiaHeader />
@@ -57,7 +62,7 @@ function RussiaApp() {
         <>
           <RussiaHeader />
           <div style={{ marginTop: '80px' }}>
-            <RussiaSales />
+            <Sales />
           </div>
           <RussiaGeneralFooter />
           <RussiaFooter />
@@ -67,7 +72,7 @@ function RussiaApp() {
         <>
           <RussiaHeader />
           <div style={{ marginTop: '80px' }}>
-            <RussiaServices />
+            <Services />
           </div>
           <RussiaGeneralFooter />
           <RussiaFooter />
@@ -77,7 +82,7 @@ function RussiaApp() {
         <>
           <RussiaHeader />
           <div style={{ marginTop: '80px' }}>
-            <RussiaAboutUs />
+            <AboutUs />
           </div>
           <RussiaGeneralFooter />
           <RussiaFooter />
@@ -91,7 +96,9 @@ function RussiaApp() {
           <RussiaFooter />
         </>
       } />
-      <Route path="/id/:id" element={<RussiaCardDetail cards={cards} />} />
+      <Route path="/id/:id" element={<CardDetail cards={cards} />} />
+      <Route path="/ru" element={<RussiaPage />} />
+
     </Routes>
   );
 }

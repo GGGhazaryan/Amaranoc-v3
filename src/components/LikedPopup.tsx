@@ -11,10 +11,11 @@ export default function LikedPopup(): React.ReactElement {
 
   return (
     <div className="popup">
-      <h3>Liked Posts</h3>
+      <h3>Հավանածներ <i className="fa fa-bookmark" aria-hidden="true"></i>
+      </h3>
       {likedCards.map((card, index) => (
         <div key={index} className="cardPopup">
-          <img src={card.image} alt={card.title} />
+          <img src={`/${card.images?.[0]}`} alt={card.title} />
           <div className="cardPopupInfo">
             <p>{card.title}</p>
             <p>{card.price}</p>
